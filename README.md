@@ -12,10 +12,10 @@ The unit here is the problem pattern, not the client. A client engagement is one
 
 Each pattern folder holds:
 
-- **`README.md`** — the problem this pattern solves, generalized to the shape a prospect would recognize, and the architecture decision behind it.
-- **`repository/`** — the actual context files the system runs on: ICP, personas, positioning, signal library, competitor radar, and a change history that logs how the repository evolved based on real performance data. This is the proof that it's a system and not a mockup.
-- **`demo/`** *(added as each pattern gets built out)* — a working interactive artifact that reproduces the real mechanics on synthetic data.
-- **`results.md`** *(added once a pattern has real deployment history)* — outcomes tied to pipeline, reply rate, meeting rate, or revenue, anonymized enough not to breach confidentiality, specific enough to be evidence.
+- **`README.md`**: the problem this pattern solves, generalized to the shape a prospect would recognize, and the architecture decision behind it.
+- **`repository/`**: the actual context files the system runs on. ICP, personas, positioning, signal library, competitor radar, and a change history that logs how the repository evolved based on real performance data. This is the proof that it's a system and not a mockup.
+- **`demo/`** *(added as each pattern gets built out)*: a working interactive artifact that reproduces the real mechanics on synthetic data.
+- **`results.md`** *(added once a pattern has real deployment history)*: outcomes tied to pipeline, reply rate, meeting rate, or revenue, anonymized enough not to breach confidentiality, specific enough to be evidence.
 
 ## Why the data is fake
 
@@ -27,4 +27,4 @@ Client work can't be shown as the literal artifact. The demo has to be a rebuilt
 
 ## Current patterns
 
-- **`01-compounding-gtm-system/`** — the repository-and-loop architecture: why static ICP filters can't compound, and what a system that gets smarter every cycle looks like instead. In progress.
+- **`01-compounding-gtm-system/`**: the repository-and-loop architecture. Why static ICP filters can't compound, and what a system that gets smarter every cycle looks like instead. In progress.

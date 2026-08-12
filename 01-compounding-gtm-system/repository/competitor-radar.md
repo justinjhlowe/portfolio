@@ -1,4 +1,4 @@
-# Competitor Radar — Ledgerly
+# Competitor Radar: Ledgerly
 
 **Version:** 2 | **Last updated:** week 3 | **Linked:** `positioning-file.md`, `persona-file.md`
 
@@ -10,7 +10,7 @@
 
 ## Bill.com
 
-**Their positioning:** Broad SMB financial operations platform — AP, AR, spend, all in one.
+**Their positioning:** Broad SMB financial operations platform: AP, AR, spend, all in one.
 **Weakness to exploit:** Breadth over depth. Audit trail and approval workflow are functional, not the headline, and Controllers report needing workarounds for anything non-standard.
 **Talk track:** "Bill.com does a little bit of everything. We do audit-readiness and close speed as the whole product, not a checkbox."
 
@@ -20,7 +20,7 @@
 **Weakness to exploit:** Strongest for card-heavy spend, weaker for the invoice-heavy, ERP-dependent AP process our ICP actually runs. Land motion is usually through cards, not through the Controller's core pain.
 **Talk track:** "If your problem is expense cards, they're a great fit. If your problem is the invoice approval queue and the audit trail behind it, that's a different product wearing the same category label."
 
-## BPO / outsourced AP *(added v2, week 3 — see change history)*
+## BPO / outsourced AP *(added v2, week 3, see change history)*
 
 Not a software competitor, but the most common objection Controllers raise, and it wasn't tracked here until it started showing up in every discovery call in week 3.
 

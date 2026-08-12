@@ -1,12 +1,12 @@
-# Change History — Ledgerly GTM Repository
+# Change History: Ledgerly GTM Repository
 
 This is the loop. Every entry below is a real weekly cycle: performance data came in, a specific file changed, and the reason is stated. This is the file that proves the difference between tool-centric and learning-centric. A tool runs the same campaign next month as it does today. This repository doesn't let it.
 
 ---
 
-## Week 1 — Baseline
+## Week 1: Baseline
 
-Repository built from discovery calls and market research. No performance data yet, so no weighting decisions to defend — this version is a hypothesis, not a result.
+Repository built from discovery calls and market research. No performance data yet, so no weighting decisions to defend. This version is a hypothesis, not a result.
 
 - `icp-file.md` v1: firmographic filter only, no scoring.
 - `persona-file.md` v1: Controller and VP Finance personas drafted from discovery call notes.
@@ -16,7 +16,7 @@ Repository built from discovery calls and market research. No performance data y
 
 ---
 
-## Week 2 — First sequence data
+## Week 2: First sequence data
 
 Signal-to-sequence sent 40 sequences across two hooks pulled from `positioning-file.md`: "close faster" (Pillar 2) and "audit-ready" (Pillar 1).
 
@@ -24,41 +24,41 @@ Signal-to-sequence sent 40 sequences across two hooks pulled from `positioning-f
 
 **Changes made:**
 - `positioning-file.md` → v2: audit-ready promoted to primary pillar, close-faster demoted to secondary. Reason logged: audit-ready outperformed by more than 2x on identical send volume.
-- `icp-file.md` and `signal-library.md`: no change. Insufficient signal-level data yet — this week's result was about which pillar to lead with, not who to target.
+- `icp-file.md` and `signal-library.md`: no change. Insufficient signal-level data yet, this week's result was about which pillar to lead with, not who to target.
 
 ---
 
-## Week 3 — First meetings, first objection pattern
+## Week 3: First meetings, first objection pattern
 
 5 meetings held from Tier 1 accounts. Recurring objection across 4 of 5 calls: "we already have a BPO handling overflow AP."
 
 **Changes made:**
 - `competitor-radar.md` → v2: BPO/outsourced AP added as a fourth competitive alternative. It hadn't been tracked because it isn't software, but it was blocking more deals than any actual software competitor that week.
 - `persona-file.md` → v2: Controller objection list updated with BPO-specific rebuttal.
-- `positioning-file.md` → v3: proof point added directly countering the BPO frame (cost scaling + audit trail comparison), since existing proof points didn't address it.
+- `positioning-file.md` → v3: proof point added directly countering the BPO frame (cost scaling and audit trail comparison), since existing proof points didn't address it.
 
 ---
 
-## Week 4 — First closed deals
+## Week 4: First closed deals
 
 1 closed-won, 2 closed-lost. Both losses had strong firmographic fit (Tier 1 on the old scoring) but the same stated reason: "no urgent budget trigger this quarter."
 
 **Changes made:**
-- `icp-file.md` → v2: new disqualifier added — no budget/funding signal in current fiscal quarter, even at high firmographic fit. This single factor explained both losses independently of anything else in the file. This is icp-file.md's own content changing: the gate got stricter. Its first change since week 1, because nothing had forced the gate itself to move until now.
+- `icp-file.md` → v2: new disqualifier added. No budget/funding signal in current fiscal quarter, even at high firmographic fit. This single factor explained both losses independently of anything else in the file. This is icp-file.md's own content changing, the gate got stricter. Its first change since week 1, because nothing had forced the gate itself to move until now.
 - `signal-library.md` → v2: "recent funding round" signal downweighted after review, since it correlated with fit but not with timing, and timing is what the losses were actually about. This is a weight change, so it lives here, not in icp-file.md.
 
 ---
 
-## Week 5 — Pattern from the win
+## Week 5: Pattern from the win
 
 Reviewing the one closed-won account for anything not yet captured: the Controller had posted about month-end close pain on LinkedIn nine days before the sequence went out. Not currently a tracked signal.
 
 **Changes made:**
-- `signal-library.md` → v3: new signal added, "Controller posts about month-end close pain on LinkedIn," weight 20. Flagged explicitly as a hypothesis from a single data point, not a proven weight — the next ten sequences targeting this signal are the actual test.
+- `signal-library.md` → v3: new signal added, "Controller posts about month-end close pain on LinkedIn," weight 20. Flagged explicitly as a hypothesis from a single data point, not a proven weight. The next ten sequences targeting this signal are the actual test.
 - `icp-file.md`: no content change. It doesn't store weights, it sums whatever `signal-library.md` currently provides for a given account. Every account that carries this new signal gets rescored automatically the moment the row above was added, without this file being touched. That's the dependency working as designed, not a step that got skipped.
 
 ---
 
 ## What this proves
 
-Five weeks, five files, zero weeks where the system ran the same way it did the week before. Nothing here was updated because someone remembered to; it was updated because the data forced the question and the file was the place the answer got written down. That's the repository compounding. A static ICP spreadsheet from week 1 would still be running the "close faster" hook today, still targeting funding rounds with no budget-timing check, and would have never heard of the BPO objection until it lost the fifth deal to it instead of the third.
+Five weeks, five files, zero weeks where the system ran the same way it did the week before. Nothing here was updated because someone remembered to. It was updated because the data forced the question and the file was the place the answer got written down. That's the repository compounding. A static ICP spreadsheet from week 1 would still be running the "close faster" hook today, still targeting funding rounds with no budget-timing check, and would have never heard of the BPO objection until it lost the fifth deal to it instead of the third.

@@ -1,19 +1,19 @@
-# Pitch Guide — Walking a Prospect Through This Repo
+# Pitch Guide: Walking a Prospect Through This Repo
 
 Read this before the call, not during it. The sequence below is what turns a demo into proof instead of a feature tour. It's written generically so it holds up as new patterns get added to `/Portfolio/`, with `01-compounding-gtm-system` as the working example throughout.
 
 ## Before the call: pick one spoke
 
-Match the spoke to what they told you was broken in discovery. Don't demo all four cold on a first call — one spoke, chosen because it's their stated pain, is the whole meeting.
+Match the spoke to what they told you was broken in discovery. Don't demo all four cold on a first call. One spoke, chosen because it's their stated pain, is the whole meeting.
 
 - "We can't outbound at volume without hiring" → `demo/signal-to-sequence.html`
 - "We're spending on ads with mediocre return" → `demo/paid-optimization.html`
 - Budget-constrained content, stalled inbound → `demo/seo-aeo-content.html`
 - Retention or expansion pressure → `demo/newsletter-segmentation.html`
 
-If nothing in discovery points clearly at one, default to signal-to-sequence — it's the sharpest single before/after and the easiest to translate to a buyer who hasn't thought about this in systems terms yet.
+If nothing in discovery points clearly at one, default to signal-to-sequence. It's the sharpest single before/after and the easiest to translate to a buyer who hasn't thought about this in systems terms yet.
 
-## Phase 1 — Name the enemy before touching the screen
+## Phase 1: Name the enemy before touching the screen
 
 Don't open with the demo. Open with the diagnosis, in their language if you can pull it from discovery:
 
@@ -21,19 +21,19 @@ Don't open with the demo. Open with the diagnosis, in their language if you can 
 
 This is what makes everything after this feel like the answer to a problem they already named, not a pitch for a tool they didn't ask for. Thirty seconds, no slides.
 
-## Phase 2 — Show the repository, live
+## Phase 2: Show the repository, live
 
 Open `demo/repository-live.html`, not the raw markdown file. Reading a code view of `icp-file.md` on GitHub doesn't land visually, it's just text on a page. The static-filter-versus-living-version contrast sits at the top of this artifact already, and the timeline below it is Phases 2 and 5 fused into one screen: click Week 1 through Week 5 and watch `icp-file.md`, `positioning-file.md`, and `competitor-radar.md` update in place, each with the actual reason from `change-history.md` right next to it. No tab-switching, no navigating to GitHub mid-pitch and back. This is the single artifact that replaces both the file tour and the change-history callout below.
 
-## Phase 3 — Run the demo on Week 2 first, on purpose
+## Phase 3: Run the demo on Week 2 first, on purpose
 
-Pick the trigger or topic with the sharpest before/after for that spoke (the linked signal-not-recognized case for signal-to-sequence, the missing comparison for SEO/AEO, the wasted-spend audience for paid, the objection-blind segment for newsletter). Let the Week 2 output be a little unremarkable. Don't apologize for it or rush past it — they've seen competent-but-generic AI output before, and that's exactly the point.
+Pick the trigger or topic with the sharpest before/after for that spoke (the linked signal-not-recognized case for signal-to-sequence, the missing comparison for SEO/AEO, the wasted-spend audience for paid, the objection-blind segment for newsletter). Let the Week 2 output be a little unremarkable. Don't apologize for it or rush past it. They've seen competent-but-generic AI output before, and that's exactly the point.
 
-## Phase 4 — Toggle to Week 5 on the identical input
+## Phase 4: Toggle to Week 5 on the identical input
 
 Let the sharper, grounded output sit on screen for a second before saying anything. Point at the retrieval trace so they see which specific file changed and why. This is the moment the meeting is built around. Don't talk over it.
 
-## Phase 5 — Point at the "why this changed" panel and preempt the objection
+## Phase 5: Point at the "why this changed" panel and preempt the objection
 
 You've already shown this inside `repository-live.html` in Phase 2, the reason panel under the timeline. Point back at it here rather than opening a new file: a real reply rate, an objection heard on a real call, a real loss reason. Say directly:
 
@@ -41,11 +41,11 @@ You've already shown this inside `repository-live.html` in Phase 2, the reason p
 
 A sharp prospect will ask if you scripted a good-looking demo. This answers it before they do, and because it's the same screen from Phase 2, there's no navigation break for the objection to slip into.
 
-## Phase 6 — Optional: show the same pivot in a second spoke
+## Phase 6: Optional. Show the same pivot in a second spoke
 
-If they're engaged and there's time left, show the same week-3 or week-4 event rippling into a different channel — the BPO objection reshaping ad copy or the newsletter the same way it reshaped the first spoke. This is the strongest thing you can show a technical buyer: one repository moving four channels. It's a bonus round, not the core meeting. Don't force it if they're already sold or already out of time.
+If they're engaged and there's time left, show the same week-3 or week-4 event rippling into a different channel, the BPO objection reshaping ad copy or the newsletter the same way it reshaped the first spoke. This is the strongest thing you can show a technical buyer: one repository moving four channels. It's a bonus round, not the core meeting. Don't force it if they're already sold or already out of time.
 
-## Phase 7 — Turn it back on them
+## Phase 7: Turn it back on them
 
 Ask what their ICP file, their signal library, their positioning file would actually need to say. Don't answer for them. Their answer is real discovery, not a rhetorical close, and whatever they say back is the first deliverable of working together:
 

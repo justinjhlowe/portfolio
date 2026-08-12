@@ -1,4 +1,4 @@
-# Tools & Stack — Answering "What Are You Actually Using"
+# Tools & Stack: Answering "What Are You Actually Using"
 
 This is a living FAQ. Add to it every time a prospect asks about a tool that isn't covered yet. The answer almost never changes shape, only the specific tool name does.
 
@@ -6,7 +6,7 @@ This is a living FAQ. Add to it every time a prospect asks about a tool that isn
 
 Split everything into two layers. The **input layer** is whatever produces a raw fact or signal: an enrichment tool, a transcription tool, an ad platform, a CRM, a job board. The **reasoning layer** is the repository, the scoring, the versioning, the change history. Input tools are replaceable by design. The reasoning layer isn't. Almost every "do you use X" question resolves to: yes, X can sit in the input layer, or it doesn't matter which tool sits there, because the repository is what decides whether the fact matters and what happens to it after.
 
-## How is Clay leveraged in this process?
+## How is Clay used in this process?
 
 Lead with the real position, don't dodge it: Clay was dropped three months ago. It enriches data faster than any SDR team, but enrichment was never the actual problem, the problem was that whatever it found sat in a spreadsheet or CRM field with no memory and no connection to what actually converted. If a prospect already has a Clay contract, they don't need to cancel it, it can sit upstream as one input feeding a signal into the repository, same as a job posting or a G2 review would. It's replaceable, and that's the point. Clay finds a fact. It doesn't remember anything.
 

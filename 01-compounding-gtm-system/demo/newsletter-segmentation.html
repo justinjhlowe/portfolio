@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Newsletter Segmentation — Live Workflow Demo</title>
+<title>Newsletter Segmentation: Live Workflow Demo</title>
 <style>
   :root {
     --navy: #0f1b2d;
@@ -60,9 +60,9 @@
   <header class="top">
     <div>
       <h1>Newsletter Segmentation</h1>
-      <p>One send, three lead stories, because the repository knows three different things about three different segments. This is also where the same pivot points from the other three spokes show up again — the week 3 BPO discovery and the week 4 timing disqualifier ripple into the newsletter exactly the way they rippled into outbound, content, and paid.</p>
+      <p>One send, three lead stories, because the repository knows three different things about three different segments. This is also where the same pivot points from the other three spokes show up again. The week 3 BPO discovery and the week 4 timing disqualifier ripple into the newsletter exactly the way they rippled into outbound, content, and paid.</p>
     </div>
-    <span class="badge-synthetic">Synthetic data — Ledgerly / Pattern 01</span>
+    <span class="badge-synthetic">Synthetic data: Ledgerly / Pattern 01</span>
   </header>
 
   <div class="grid">
@@ -73,15 +73,15 @@
         <legend>1. Segment</legend>
         <label class="option" id="opt-prospects">
           <input type="radio" name="segment" value="prospects" checked>
-          Engaged prospects — Tier 1, mid-funnel
+          Engaged prospects: Tier 1, mid-funnel
         </label>
         <label class="option" id="opt-customers">
           <input type="radio" name="segment" value="customers">
-          Customers — nearing renewal
+          Customers: nearing renewal
         </label>
         <label class="option" id="opt-cold">
           <input type="radio" name="segment" value="cold">
-          Newly subscribed — unscored
+          Newly subscribed: unscored
         </label>
       </fieldset>
 
@@ -109,10 +109,10 @@ const scenarios = {
   prospects: {
     week2: {
       trace: [
-        { file: 'icp-file.md · v1', detail: 'Tier 1 fit, no budget-timing filter applied — this segment includes some accounts later found to be out of window.' },
+        { file: 'icp-file.md · v1', detail: 'Tier 1 fit, no budget-timing filter applied. This segment includes some accounts later found to be out of window.' },
         { file: 'persona-file.md · v1', detail: 'Controller pain #1: close three days late every month.' },
         { file: 'positioning-file.md · v2', detail: 'Primary pillar: audit-ready by default. No proof point countering an outsourcing objection yet.' },
-        { file: 'competitor-radar.md · v1', detail: 'No BPO entry — this send can\'t address an objection the repository doesn\'t know exists yet.' }
+        { file: 'competitor-radar.md · v1', detail: 'No BPO entry. This send can\'t address an objection the repository doesn\'t know exists yet.' }
       ],
       subject: 'Why audit season doesn\'t have to mean two weeks of chasing paper',
       body: `Most Controllers we talk to spend the two weeks before an audit pulling backup documentation by hand. Ledgerly makes every approval audit-ready the moment it happens, so that two weeks becomes two days.
@@ -122,10 +122,10 @@ If that sounds familiar, worth a look at how it works.`,
     },
     week5: {
       trace: [
-        { file: 'icp-file.md · v2', detail: 'Tier 1 fit, budget-timing filter applied (added week 4) — this segment now excludes accounts without a live signal.' },
+        { file: 'icp-file.md · v2', detail: 'Tier 1 fit, budget-timing filter applied (added week 4). This segment now excludes accounts without a live signal.' },
         { file: 'persona-file.md · v2', detail: 'Controller pain #1, plus the BPO objection now pre-loaded from week 3.' },
         { file: 'positioning-file.md · v3', detail: 'Primary pillar: audit-ready by default, with the proof point added in week 3 to directly counter the outsourcing frame.' },
-        { file: 'competitor-radar.md · v2', detail: 'BPO/outsourced AP tracked as the most common objection at this segment\'s stage — the lead story addresses it head-on instead of waiting for it to come up on a call.' }
+        { file: 'competitor-radar.md · v2', detail: 'BPO/outsourced AP tracked as the most common objection at this segment\'s stage. The lead story addresses it head-on instead of waiting for it to come up on a call.' }
       ],
       subject: 'The BPO you\'re paying for isn\'t fixing your audit trail',
       body: `If overflow AP is routed through a BPO right now, it's worth knowing that moves the manual work off your payroll, but it doesn't create an audit trail, and the cost doesn't flatten as volume grows.
@@ -142,17 +142,17 @@ Ledgerly cuts audit prep from two weeks to two days, and deployed accounts haven
       subject: 'What two days of audit prep actually looks like',
       body: `A quick reminder of what changed since you came on: audit prep dropped from two weeks to two days, and close has moved up 2.8 days on average.
 
-Renewal conversations go faster when the numbers are already in front of you — here's where to find yours.`,
+Renewal conversations go faster when the numbers are already in front of you. Here's where to find yours.`,
       cta: 'View your account\'s numbers →'
     },
     week5: {
       trace: [
-        { file: 'positioning-file.md · v3', detail: 'Same two proof points, plus the zero duplicate payment stat added in week 3 — one more data point for the renewal case.' }
+        { file: 'positioning-file.md · v3', detail: 'Same two proof points, plus the zero duplicate payment stat added in week 3, one more data point for the renewal case.' }
       ],
       subject: 'What two days of audit prep actually looks like',
       body: `A quick reminder of what changed since you came on: audit prep dropped from two weeks to two days, close has moved up 2.8 days on average, and there hasn't been a single duplicate payment in the last two quarters.
 
-Renewal conversations go faster when the numbers are already in front of you — here's where to find yours.`,
+Renewal conversations go faster when the numbers are already in front of you. Here's where to find yours.`,
       cta: 'View your account\'s numbers →'
     }
   },
@@ -160,7 +160,7 @@ Renewal conversations go faster when the numbers are already in front of you —
     week2: {
       unscored: true,
       trace: [
-        { file: 'icp-file.md · v1', detail: 'No identifying signal — this segment hasn\'t been matched to a fit score or persona yet.' },
+        { file: 'icp-file.md · v1', detail: 'No identifying signal. This segment hasn\'t been matched to a fit score or persona yet.' },
         { file: 'signal-library.md · v1', detail: 'No signal on file for this reader. Nothing to query.' }
       ],
       subject: '5 signs your AP process won\'t scale past 500 invoices a month',
@@ -170,7 +170,7 @@ Renewal conversations go faster when the numbers are already in front of you —
     week5: {
       unscored: true,
       trace: [
-        { file: 'icp-file.md · v2', detail: 'Still no identifying signal — the week 4 disqualifier and every signal-library.md update since don\'t change anything here, because there\'s nothing to score yet.' },
+        { file: 'icp-file.md · v2', detail: 'Still no identifying signal. The week 4 disqualifier and every signal-library.md update since don\'t change anything here, because there\'s nothing to score yet.' },
         { file: 'signal-library.md · v3', detail: 'No signal on file for this reader, same as week 2. The new LinkedIn-post signal only matters once it fires for someone in this list.' }
       ],
       subject: '5 signs your AP process won\'t scale past 500 invoices a month',
@@ -204,7 +204,7 @@ function runWorkflow() {
   let html = '';
 
   if (s.unscored) {
-    html += `<div class="warning-banner">⚠ No identifying signal for this segment. The repository has nothing to personalize against yet — this is the honest limit of the system, not a gap in it.</div>`;
+    html += `<div class="warning-banner">⚠ No identifying signal for this segment. The repository has nothing to personalize against yet. This is the honest limit of the system, not a gap in it.</div>`;
   }
 
   html += `<h2>Retrieval trace</h2>`;

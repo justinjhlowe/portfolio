@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>The Repository, Live — Compounding Timeline</title>
+<title>The Repository, Live: Compounding Timeline</title>
 <style>
   :root {
     --navy: #0f1b2d;
@@ -87,7 +87,7 @@
   <header class="top">
     <h1>The Repository, Live</h1>
     <p>One real account, scored with each week's actual rules. Watch what the repository would have told a rep to do with it, five weeks running.</p>
-    <span class="badge-synthetic">Synthetic data — Ledgerly / Pattern 01</span>
+    <span class="badge-synthetic">Synthetic data: Ledgerly / Pattern 01</span>
   </header>
 
   <div class="dead-banner">
@@ -109,9 +109,9 @@
 <script>
 // Fairmont Diagnostics: fixed facts about the account, never change.
 // icp-file.md owns the gate/disqualifiers/tiers and SUMS whatever signal-library.md currently provides.
-// It doesn't store weights itself — that's the whole point being demonstrated below.
+// It doesn't store weights itself. That's the whole point being demonstrated below.
 // Weeks 1-4: Controller hire (25) + G2 complaint (15) + job posting (10) + ERP migration (10) = 60, Tier 2.
-// Week 5: signal-library.md adds a new signal Fairmont carries (+20) — icp-file.md recalculates without being edited. 80, Tier 1.
+// Week 5: signal-library.md adds a new signal Fairmont carries (+20). icp-file.md recalculates without being edited. 80, Tier 1.
 
 function tierFor(score) {
   if (score >= 80) return 1;
@@ -119,7 +119,7 @@ function tierFor(score) {
   return 3;
 }
 function tierLabel(t) {
-  return t === 1 ? 'Tier 1 — Immediate outbound' : t === 2 ? 'Tier 2 — Nurture' : 'Tier 3 — Deprioritize';
+  return t === 1 ? 'Tier 1: Immediate outbound' : t === 2 ? 'Tier 2: Nurture' : 'Tier 3: Deprioritize';
 }
 
 const weeks = [
@@ -127,14 +127,14 @@ const weeks = [
     n: 1, label: 'Week 1', score: 60, big: false,
     consequence: 'Sitting in the nurture queue from day one. Signals present: Controller hire, G2 complaint, job posting, ERP migration.',
     icp: { touched: false, lines: [{ type: 'stable', text: 'Gate passed. Sums signal-library.md for Fairmont: 25 + 15 + 10 + 10 = 60' }] },
-    signals: { touched: false, lines: [{ type: 'stable', text: 'Controller hire (25), G2 complaint (15), job posting (10), ERP migration (10) — 6 signals total, weights by judgment' }] },
-    positioning: { touched: false, lines: [{ type: 'stable', text: 'Pillars: Audit-ready, Close faster, No new headcount — no priority set, no proof points yet' }] },
+    signals: { touched: false, lines: [{ type: 'stable', text: 'Controller hire (25), G2 complaint (15), job posting (10), ERP migration (10). 6 signals total, weights by judgment' }] },
+    positioning: { touched: false, lines: [{ type: 'stable', text: 'Pillars: Audit-ready, Close faster, No new headcount. No priority set, no proof points yet' }] },
     competitor: { touched: false, lines: [{ type: 'stable', text: 'Tipalti, Bill.com, Ramp/Airbase' }] },
     why: null
   },
   {
     n: 2, label: 'Week 2', score: 60, big: false,
-    consequence: 'Fairmont\'s score doesn\'t move this week — nothing that feeds its score changed.',
+    consequence: 'Fairmont\'s score doesn\'t move this week. Nothing that feeds its score changed.',
     icp: { touched: false, lines: [{ type: 'nochange', text: 'No change this week' }] },
     signals: { touched: false, lines: [{ type: 'nochange', text: 'No change this week' }] },
     positioning: { touched: true, lines: [
@@ -161,16 +161,16 @@ const weeks = [
   },
   {
     n: 4, label: 'Week 4', score: 60, big: false,
-    consequence: 'Still Tier 2 — correctly. This guardrail and this reweight were both built for other accounts, not this one.',
+    consequence: 'Still Tier 2, correctly. This guardrail and this reweight were both built for other accounts, not this one.',
     icp: { touched: true, lines: [
       { type: 'old', text: 'No timing disqualifier existed' },
       { type: 'new', text: 'Disqualifier added: no budget/funding signal this quarter', badge: true },
-      { type: 'mechanism', text: 'Fairmont has no funding-round signal either way — unaffected by this gate change.' }
+      { type: 'mechanism', text: 'Fairmont has no funding-round signal either way, unaffected by this gate change.' }
     ] },
     signals: { touched: true, lines: [
       { type: 'old', text: 'Funding round: Stable, weight 15' },
       { type: 'new', text: 'Funding round: Downweighted', badge: true },
-      { type: 'mechanism', text: 'Fairmont never carried this signal — unaffected either way.' }
+      { type: 'mechanism', text: 'Fairmont never carried this signal, unaffected either way.' }
     ] },
     positioning: { touched: false, lines: [{ type: 'nochange', text: 'No change this week' }] },
     competitor: { touched: false, lines: [{ type: 'nochange', text: 'No change this week' }] },
@@ -180,7 +180,7 @@ const weeks = [
     n: 5, label: 'Week 5', score: 80, big: true,
     consequence: 'Crosses into Tier 1. This is the account that actually closed.',
     icp: { touched: false, lines: [
-      { type: 'mechanism', text: 'No content change here. This file sums signal-library.md, it doesn\'t store weights — so Fairmont rescores automatically the moment the row on the right gets added.' },
+      { type: 'mechanism', text: 'No content change here. This file sums signal-library.md, it doesn\'t store weights, so Fairmont rescores automatically the moment the row on the right gets added.' },
       { type: 'new', text: 'Fairmont: 60 → 80. Tier 2 → Tier 1.', badge: true }
     ] },
     signals: { touched: true, lines: [
@@ -189,7 +189,7 @@ const weeks = [
     ] },
     positioning: { touched: false, lines: [{ type: 'nochange', text: 'No change this week' }] },
     competitor: { touched: false, lines: [{ type: 'nochange', text: 'No change this week' }] },
-    why: 'Reviewing the account that closed: the Controller had posted about month-end close pain on LinkedIn nine days before the sequence went out. Not a tracked signal until this week. Added to signal-library.md at weight 20 — the single addition that moved Fairmont out of the nurture queue it had sat in for a month, and into immediate outbound, without anyone touching icp-file.md at all. It closed shortly after.'
+    why: 'Reviewing the account that closed: the Controller had posted about month-end close pain on LinkedIn nine days before the sequence went out. Not a tracked signal until this week. Added to signal-library.md at weight 20, the single addition that moved Fairmont out of the nurture queue it had sat in for a month, and into immediate outbound, without anyone touching icp-file.md at all. It closed shortly after.'
   }
 ];
 
@@ -264,7 +264,7 @@ function renderWhy() {
     panel.innerHTML = `<div class="why-label">Why this changed</div><div class="why-body">${w.why}</div>`;
   } else {
     panel.className = 'why-panel nochange';
-    panel.innerHTML = `<div class="why-label">Baseline</div><div class="why-body">No performance data yet. This version is a hypothesis, not a result — nothing to defend, nothing changed.</div>`;
+    panel.innerHTML = `<div class="why-label">Baseline</div><div class="why-body">No performance data yet. This version is a hypothesis, not a result. Nothing to defend, nothing changed.</div>`;
   }
 }
 

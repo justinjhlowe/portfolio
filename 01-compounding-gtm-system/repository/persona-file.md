@@ -1,4 +1,4 @@
-# Persona File — Ledgerly
+# Persona File: Ledgerly
 
 **Version:** 4 | **Last updated:** week 4 | **Linked:** `positioning-file.md`, `icp-file.md`
 
@@ -14,12 +14,12 @@
 **Trigger that moves them to act:** A bad audit finding, a new CFO asking why close takes so long, or hitting a transaction volume where the manual process visibly breaks (usually around 500+ invoices/month).
 
 **Objections:**
-- "We already have a BPO handling overflow AP." (see `competitor-radar.md` — BPO is now tracked as a fourth alternative, not just software competitors)
+- "We already have a BPO handling overflow AP." (see `competitor-radar.md`: BPO is now tracked as a fourth alternative, not just software competitors)
 - "Implementation will blow up our close calendar for a quarter." (countered with phased rollout proof point)
 
 **What they trust:** A peer reference from a Controller at a similar-size company more than any deck. Wants to see the audit trail feature live, not described.
 
-**Messaging pillar that lands:** Audit-ready by default (Pillar 2 in positioning file — promoted to primary in v3 after reply-rate data, see change history).
+**Messaging pillar that lands:** Audit-ready by default. Pillar 2 in positioning file, promoted to primary in v3 after reply-rate data, see change history.
 
 ## VP Finance / CFO (economic buyer)
 
@@ -54,4 +54,4 @@
 
 **What they trust:** Peer-level walkthroughs, not sales messaging.
 
-**Messaging pillar that lands:** N/A — this persona is managed through the Controller relationship, not targeted directly in outbound.
+**Messaging pillar that lands:** N/A. This persona is managed through the Controller relationship, not targeted directly in outbound.

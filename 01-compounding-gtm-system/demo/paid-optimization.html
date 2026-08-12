@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Paid Optimization — Live Workflow Demo</title>
+<title>Paid Optimization: Live Workflow Demo</title>
 <style>
   :root {
     --navy: #0f1b2d;
@@ -68,28 +68,28 @@
   <header class="top">
     <div>
       <h1>Paid Optimization</h1>
-      <p>Paid spend isn't optimized by a media buyer guessing at ICP — it's targeted and priced against the same repository. The number that matters here isn't clicks or impressions, it's how much spend goes to accounts that were never going to close this quarter.</p>
+      <p>Paid spend isn't optimized by a media buyer guessing at ICP. It's targeted and priced against the same repository. The number that matters here isn't clicks or impressions, it's how much spend goes to accounts that were never going to close this quarter.</p>
     </div>
-    <span class="badge-synthetic">Synthetic data — Ledgerly / Pattern 01</span>
+    <span class="badge-synthetic">Synthetic data: Ledgerly / Pattern 01</span>
   </header>
 
   <div class="grid">
     <div class="panel controls">
-      <div class="note-card">Every campaign below reads the ICP fit score to size the audience and set budget, the persona file for the angle, and the competitor radar for targeting terms. No vanity metrics — the headline number is estimated wasted spend, tied directly to the accounts that turned out to have no current-quarter signal.</div>
+      <div class="note-card">Every campaign below reads the ICP fit score to size the audience and set budget, the persona file for the angle, and the competitor radar for targeting terms. No vanity metrics: the headline number is estimated wasted spend, tied directly to the accounts that turned out to have no current-quarter signal.</div>
 
       <fieldset>
         <legend>1. Campaign</legend>
         <label class="option" id="opt-abm">
           <input type="radio" name="campaign" value="abm" checked>
-          LinkedIn ABM — Tier 1 healthcare accounts
+          LinkedIn ABM: Tier 1 healthcare accounts
         </label>
         <label class="option" id="opt-search">
           <input type="radio" name="campaign" value="search">
-          Google Search — competitor + BPO terms
+          Google Search: competitor + BPO terms
         </label>
         <label class="option" id="opt-retarget">
           <input type="radio" name="campaign" value="retarget">
-          Retargeting — pricing page visitors
+          Retargeting: pricing page visitors
         </label>
       </fieldset>
 
@@ -117,14 +117,14 @@ const scenarios = {
   abm: {
     week2: {
       trace: [
-        { file: 'icp-file.md · v1', detail: 'Audience built from firmographic + funding-stage filter only. No budget-timing disqualifier exists yet — this was added week 4.' },
+        { file: 'icp-file.md · v1', detail: 'Audience built from firmographic + funding-stage filter only. No budget-timing disqualifier exists yet, this was added week 4.' },
         { file: 'signal-library.md · v1', detail: 'Funding round weight: 15, no timing check. Accounts with old funding rounds score the same as accounts with a live signal this quarter.' }
       ],
       audienceSize: '340 accounts',
       avgFit: '71',
       waste: '35%',
       wasteClass: 'waste-bad',
-      wasteNote: 'Estimated share of budget spent on accounts later shown to have no current-quarter budget signal — the exact profile behind 2 of the 3 closed-lost deals in week 4.',
+      wasteNote: 'Estimated share of budget spent on accounts later shown to have no current-quarter budget signal, the exact profile behind 2 of the 3 closed-lost deals in week 4.',
       headline: 'Cut Audit Prep From Two Weeks to Two Days',
       body: 'Standard audit-ready pitch, served evenly across all Series B+ healthcare accounts in range regardless of timing.',
       keywords: null
@@ -132,14 +132,14 @@ const scenarios = {
     week5: {
       trace: [
         { file: 'icp-file.md · v2', detail: 'Budget-timing disqualifier applied (added week 4): excludes accounts without a current-quarter budget or funding signal, even at high firmographic fit.' },
-        { file: 'signal-library.md · v2', detail: 'Funding round weight downweighted — it correlated with fit but not with timing, and timing is what the week 4 losses were actually about.' }
+        { file: 'signal-library.md · v2', detail: 'Funding round weight downweighted. It correlated with fit but not with timing, and timing is what the week 4 losses were actually about.' }
       ],
       audienceSize: '210 accounts',
       avgFit: '89',
       waste: '8%',
       wasteClass: 'waste-good',
-      wasteNote: 'Remaining waste is accounts that pass every filter but haven\'t yet shown a trigger signal — irreducible without a live signal, not a targeting error.',
-      headline: 'Cut Audit Prep From Two Weeks to Two Days — Before Your Next Audit Cycle',
+      wasteNote: 'Remaining waste is accounts that pass every filter but haven\'t yet shown a trigger signal, irreducible without a live signal, not a targeting error.',
+      headline: 'Cut Audit Prep From Two Weeks to Two Days: Before Your Next Audit Cycle',
       body: 'Same core pitch, with urgency added for accounts carrying a live signal. Budget concentrated on 210 in-window accounts instead of spread across 340.',
       keywords: null
     }
@@ -147,15 +147,15 @@ const scenarios = {
   search: {
     week2: {
       trace: [
-        { file: 'competitor-radar.md · v1', detail: 'Tipalti, Bill.com, and Ramp/Airbase tracked. No BPO/outsourced AP entry yet — added week 3.' }
+        { file: 'competitor-radar.md · v1', detail: 'Tipalti, Bill.com, and Ramp/Airbase tracked. No BPO/outsourced AP entry yet, added week 3.' }
       ],
       audienceSize: 'Search volume: competitor terms only',
-      avgFit: '—',
+      avgFit: 'N/A',
       waste: null,
       headline: 'A Faster Way to Handle Accounts Payable',
       body: 'Bids on "Tipalti alternative," "Bill.com AP automation review," "Airbase vs [category]." Lands on general product page.',
       keywords: ['Tipalti alternative', 'Bill.com AP automation review', 'Airbase vs AP automation'],
-      missedNote: 'Not bidding on outsourcing-comparison terms yet — missing the search volume from buyers actively comparing BPO vs. software, which discovery calls later showed was the dominant objection.'
+      missedNote: 'Not bidding on outsourcing-comparison terms yet, missing the search volume from buyers actively comparing BPO vs. software, which discovery calls later showed was the dominant objection.'
     },
     week5: {
       trace: [
@@ -163,7 +163,7 @@ const scenarios = {
         { file: 'positioning-file.md · v3', detail: 'Proof point countering the outsourcing frame directly, used in the dedicated landing variant below.' }
       ],
       audienceSize: 'Search volume: competitor + outsourcing-comparison terms',
-      avgFit: '—',
+      avgFit: 'N/A',
       waste: null,
       headline: 'A Faster, Cheaper Way to Handle Accounts Payable Than Outsourcing',
       body: 'Adds bids on outsourcing-comparison terms. Traffic from those terms lands on a dedicated variant leading with the cost-scaling and audit-trail rebuttal, message-matched instead of dropped on a generic product page.',
@@ -177,7 +177,7 @@ const scenarios = {
         { file: 'persona-file.md · v1', detail: 'Controller pain #1: "we close three days late every month because approvals sit in email."' }
       ],
       audienceSize: 'Website visitors, viewed pricing, no conversion, 14-day window',
-      avgFit: '—',
+      avgFit: 'N/A',
       waste: null,
       headline: 'Still Thinking About It?',
       body: 'Here\'s what a two-day audit prep actually looks like, compared to what most teams run today.',
@@ -185,11 +185,11 @@ const scenarios = {
     },
     week5: {
       trace: [
-        { file: 'persona-file.md · v2', detail: 'Same pain point as week 2 — this hasn\'t changed. The proof behind it has.' },
+        { file: 'persona-file.md · v2', detail: 'Same pain point as week 2. This hasn\'t changed. The proof behind it has.' },
         { file: 'positioning-file.md · v3', detail: 'Zero duplicate payment proof point added as a secondary line, stacked with the existing audit-prep stat.' }
       ],
       audienceSize: 'Website visitors, viewed pricing, no conversion, 14-day window',
-      avgFit: '—',
+      avgFit: 'N/A',
       waste: null,
       headline: 'Still Thinking About It?',
       body: 'Here\'s what a two-day audit prep actually looks like, and why deployed accounts haven\'t had a duplicate payment in two quarters.',
@@ -228,7 +228,7 @@ function runWorkflow() {
 
   html += `<div class="metrics-row">
     <div class="metric-card"><div class="metric-num" style="font-size:16px;">${s.audienceSize}</div><div class="metric-label">Audience</div></div>
-    ${s.avgFit !== '—' ? `<div class="metric-card"><div class="metric-num">${s.avgFit}</div><div class="metric-label">Avg. fit score</div></div>` : ''}
+    ${s.avgFit !== 'N/A' ? `<div class="metric-card"><div class="metric-num">${s.avgFit}</div><div class="metric-label">Avg. fit score</div></div>` : ''}
     ${s.waste ? `<div class="metric-card"><div class="metric-num ${s.wasteClass}">${s.waste}</div><div class="metric-label">Est. wasted spend</div></div>` : ''}
   </div>`;
 

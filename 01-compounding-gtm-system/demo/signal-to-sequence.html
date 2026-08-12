@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Signal-to-Sequence — Live Workflow Demo</title>
+<title>Signal-to-Sequence: Live Workflow Demo</title>
 <style>
   :root {
     --navy: #0f1b2d;
@@ -82,13 +82,14 @@
     font-size: 12.5px; margin-bottom: 16px; color: #7a5710;
   }
   .seq-block { margin-top: 18px; border-top: 2px solid var(--navy); padding-top: 16px; }
+  .field-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: #9a9a9a; margin-bottom: 6px; }
   .seq-subject { font-weight: 700; font-size: 14px; margin-bottom: 8px; }
   .seq-body {
     background: #fbfaf7; border: 1px solid #e3ded4; border-radius: 7px; padding: 14px 16px;
     font-size: 13px; line-height: 1.6; white-space: pre-wrap;
   }
-  .touch-row { display: flex; gap: 8px; margin-top: 10px; font-size: 12px; color: #5b5b5b; }
-  .touch-tag { font-weight: 700; color: var(--navy); white-space: nowrap; }
+  .touch-row { display: flex; gap: 10px; margin-top: 8px; padding: 10px 12px; background: #fbfaf7; border: 1px solid #ece7dc; border-radius: 6px; font-size: 12.5px; color: #333; align-items: baseline; }
+  .touch-tag { font-weight: 700; color: #fff; background: var(--navy); white-space: nowrap; font-size: 11px; padding: 2px 8px; border-radius: 10px; }
   footer.note { margin-top: 22px; font-size: 11.5px; color: #9a9a9a; text-align: center; }
 </style>
 </head>
@@ -99,7 +100,7 @@
       <h1>Signal-to-Sequence</h1>
       <p>A trigger fires, the workflow queries the GTM repository, and writes a sequence grounded in accumulated context instead of a rep's memory. Toggle the repository version to see the same trigger produce a different output as the repository compounds.</p>
     </div>
-    <span class="badge-synthetic">Synthetic data — Ledgerly / Pattern 01</span>
+    <span class="badge-synthetic">Synthetic data: Ledgerly / Pattern 01</span>
   </header>
 
   <div class="grid">
@@ -118,15 +119,15 @@
         <legend>1. Trigger signal</legend>
         <label class="option" id="opt-controller_hire">
           <input type="radio" name="trigger" value="controller_hire" checked>
-          New Controller hired — Sarah Chen joins as Controller
+          New Controller hired: Sarah Chen joins as Controller
         </label>
         <label class="option" id="opt-audit_finding">
           <input type="radio" name="trigger" value="audit_finding">
-          Audit finding — FY24 audit flagged AP process gaps
+          Audit finding: FY24 audit flagged AP process gaps
         </label>
         <label class="option" id="opt-linkedin_post">
           <input type="radio" name="trigger" value="linkedin_post">
-          Controller LinkedIn post — "month-end close is taking too long again"
+          Controller LinkedIn post: "month-end close is taking too long again"
         </label>
       </fieldset>
 
@@ -146,7 +147,7 @@
     </div>
   </div>
 
-  <footer class="note">Every line in the output below traces back to a specific file in <code>repository/</code>. Nothing here is generic AI copy — it's assembled from the ICP score, persona pain, positioning pillar, and competitor angle the repository returns for this trigger and this version.</footer>
+  <footer class="note">Every line in the output below traces back to a specific file in <code>repository/</code>. Nothing here is generic AI copy. It's assembled from the ICP score, persona pain, positioning pillar, and competitor angle the repository returns for this trigger and this version.</footer>
 </div>
 
 <script>
@@ -155,11 +156,11 @@ const scenarios = {
     week2: {
       score: 85, tier: 1,
       trace: [
-        { file: 'signal-library.md · v1', detail: 'New Controller/VP Finance hire, weight 25 — the weight this score is built from.' },
-        { file: 'icp-file.md · v1', detail: 'Fit score 85 (Tier 1) — gate passed, sums matched signals from signal-library.md. icp-file.md doesn\'t store the weight itself, just the formula.' },
+        { file: 'signal-library.md · v1', detail: 'New Controller/VP Finance hire, weight 25. The weight this score is built from.' },
+        { file: 'icp-file.md · v1', detail: 'Fit score 85 (Tier 1). Gate passed, sums matched signals from signal-library.md. icp-file.md doesn\'t store the weight itself, just the formula.' },
         { file: 'persona-file.md · v1', detail: 'Controller pain #1 pulled: "we close three days late every month because approvals sit in email."' },
         { file: 'positioning-file.md · v2', detail: 'Primary pillar: Audit-ready by default. Proof point: audit prep time, two weeks to two days.' },
-        { file: 'competitor-radar.md · v1', detail: 'No BPO objection tracked yet — this file did not exist until week 3.' }
+        { file: 'competitor-radar.md · v1', detail: 'No BPO objection tracked yet. This file did not exist until week 3.' }
       ],
       subject: 'Congrats on the new role, Sarah',
       body: `Saw you joined Meridian as Controller. First 90 days usually means auditing how close actually runs.
@@ -173,11 +174,11 @@ Worth 15 minutes to see if it's relevant to how Meridian runs close?`,
     week5: {
       score: 85, tier: 1,
       trace: [
-        { file: 'signal-library.md · v3', detail: 'New Controller/VP Finance hire, weight 25 — unchanged since week 1. This signal was never touched.' },
-        { file: 'icp-file.md · v2', detail: 'Fit score still 85 (Tier 1) — the score doesn\'t move, because nothing that feeds it changed. What\'s different below is the message, not the priority.' },
+        { file: 'signal-library.md · v3', detail: 'New Controller/VP Finance hire, weight 25, unchanged since week 1. This signal was never touched.' },
+        { file: 'icp-file.md · v2', detail: 'Fit score still 85 (Tier 1). The score doesn\'t move, because nothing that feeds it changed. What\'s different below is the message, not the priority.' },
         { file: 'persona-file.md · v2', detail: 'Controller pain #1 pulled, plus BPO objection now pre-loaded from persona-file.md v2 (added week 3).' },
         { file: 'positioning-file.md · v3', detail: 'Primary pillar: Audit-ready by default. Proof points: audit prep two weeks to two days, plus zero duplicate payments in two quarters.' },
-        { file: 'competitor-radar.md · v2', detail: 'BPO/outsourced AP flagged as the most likely objection at this account stage — pre-emptive line inserted before it can be raised.' }
+        { file: 'competitor-radar.md · v2', detail: 'BPO/outsourced AP flagged as the most likely objection at this account stage. Pre-emptive line inserted before it can be raised.' }
       ],
       subject: 'Congrats on the new role, Sarah',
       body: `Saw you joined Meridian as Controller. First 90 days usually means auditing how close actually runs, especially with the FY24 audit finding still fresh.
@@ -193,10 +194,10 @@ Worth 15 minutes to see if it's relevant to Meridian?`,
     week2: {
       score: 88, tier: 1,
       trace: [
-        { file: 'signal-library.md · v1', detail: 'Audit finding in press, weight 25 — the weight this score is built from.' },
-        { file: 'icp-file.md · v1', detail: 'Fit score 88 (Tier 1) — gate passed, sums matched signals from signal-library.md.' },
+        { file: 'signal-library.md · v1', detail: 'Audit finding in press, weight 25. The weight this score is built from.' },
+        { file: 'icp-file.md · v1', detail: 'Fit score 88 (Tier 1). Gate passed, sums matched signals from signal-library.md.' },
         { file: 'positioning-file.md · v2', detail: 'Primary pillar: Audit-ready by default. Proof point: audit prep time, two weeks to two days.' },
-        { file: 'competitor-radar.md · v1', detail: 'No competitor angle needed — trigger is finding-specific, not comparison-specific.' }
+        { file: 'competitor-radar.md · v1', detail: 'No competitor angle needed. Trigger is finding-specific, not comparison-specific.' }
       ],
       subject: "Meridian's FY24 audit finding",
       body: `Saw the FY24 audit flagged gaps in the AP process. That's usually a controls and documentation problem more than a headcount problem.
@@ -210,10 +211,10 @@ Worth a quick look before next year's audit cycle?`,
     week5: {
       score: 88, tier: 1,
       trace: [
-        { file: 'signal-library.md · v3', detail: 'Audit finding in press, weight 25 — held steady through every revision, never touched.' },
-        { file: 'icp-file.md · v2', detail: 'Fit score still 88 (Tier 1) — gate and disqualifiers current as of week 4, but neither applies to this trigger.' },
+        { file: 'signal-library.md · v3', detail: 'Audit finding in press, weight 25, held steady through every revision, never touched.' },
+        { file: 'icp-file.md · v2', detail: 'Fit score still 88 (Tier 1). Gate and disqualifiers current as of week 4, but neither applies to this trigger.' },
         { file: 'positioning-file.md · v3', detail: 'Primary pillar: Audit-ready by default. Proof points: two weeks to two days, plus zero duplicate payments added v3.' },
-        { file: 'competitor-radar.md · v2', detail: 'No competitor angle needed for this trigger — confirms the repository only adds an objection line when the trigger actually calls for it.' }
+        { file: 'competitor-radar.md · v2', detail: 'No competitor angle needed for this trigger. Confirms the repository only adds an objection line when the trigger actually calls for it.' }
       ],
       subject: "Meridian's FY24 audit finding",
       body: `Saw the FY24 audit flagged gaps in the AP process. That's usually a controls and documentation problem more than a headcount problem.
@@ -229,10 +230,10 @@ Worth a quick look before next year's audit cycle?`,
     week2: {
       score: 55, tier: 2, notFound: true,
       trace: [
-        { file: 'signal-library.md · v1', detail: '"Controller posts about close pain on LinkedIn" is not a tracked signal in this version — it wasn\'t added until week 5.' },
+        { file: 'signal-library.md · v1', detail: '"Controller posts about close pain on LinkedIn" is not a tracked signal in this version. It wasn\'t added until week 5.' },
         { file: 'icp-file.md · v1', detail: 'No signal match. Score falls back to firmographic baseline only: 55 (Tier 2).' }
       ],
-      subject: 'Quick intro — Ledgerly',
+      subject: 'Quick intro: Ledgerly',
       body: `Hi Sarah,
 
 Hope things are going well at Meridian. Wanted to share how Ledgerly helps finance teams automate accounts payable and speed up close.
@@ -244,8 +245,8 @@ Happy to send more information if useful.`,
     week5: {
       score: 96, tier: 1,
       trace: [
-        { file: 'signal-library.md · v3', detail: 'Signal matched: Controller LinkedIn post about close pain, weight 20 — added week 5 directly from the pattern in the one closed-won deal.' },
-        { file: 'icp-file.md · v2', detail: 'Fit score 96 (Tier 1) — no edit to this file was needed. It sums whatever signal-library.md provides, so the new row above rescored this account automatically.' },
+        { file: 'signal-library.md · v3', detail: 'Signal matched: Controller LinkedIn post about close pain, weight 20, added week 5 directly from the pattern in the one closed-won deal.' },
+        { file: 'icp-file.md · v2', detail: 'Fit score 96 (Tier 1). No edit to this file was needed. It sums whatever signal-library.md provides, so the new row above rescored this account automatically.' },
         { file: 'positioning-file.md · v3', detail: 'Primary pillar: Audit-ready by default. Proof point: two weeks to two days, plus close acceleration of 2.8 days.' }
       ],
       subject: 'Saw your post about close',
@@ -255,7 +256,7 @@ That's almost word for word what our last closed customer's Controller said befo
 
 Given the timing, worth a quick look at how Meridian's approval flow is set up?`,
       touch2: 'Reference the specific proof point again, offer the peer reference directly.',
-      touch3: 'Direct ask, no further nurture — score of 96 skips the standard nurture sequence.'
+      touch3: 'Direct ask, no further nurture. Score of 96 skips the standard nurture sequence.'
     }
   }
 };
@@ -291,7 +292,7 @@ function runWorkflow() {
     <div class="score-num">${s.score}</div>
     <div>
       <span class="score-tier ${s.tier === 2 ? 'tier2' : ''}">Tier ${s.tier}</span>
-      <div class="score-label">Fit score — icp-file.md sums signal-library.md</div>
+      <div class="score-label">Fit score: icp-file.md sums signal-library.md</div>
     </div>
   </div>`;
 
@@ -301,11 +302,12 @@ function runWorkflow() {
   });
 
   html += `<div class="seq-block">
-    <h2>Generated sequence — Touch 1</h2>
+    <h2>Generated sequence: Touch 1</h2>
     <div class="seq-subject">Subject: ${s.subject}</div>
     <div class="seq-body">${s.body}</div>
-    <div class="touch-row"><span class="touch-tag">Touch 2:</span> ${s.touch2}</div>
-    <div class="touch-row"><span class="touch-tag">Touch 3:</span> ${s.touch3}</div>
+    <div class="field-label" style="margin-top:16px;">Full sequence</div>
+    <div class="touch-row"><span class="touch-tag">Touch 2</span> ${s.touch2}</div>
+    <div class="touch-row"><span class="touch-tag">Touch 3</span> ${s.touch3}</div>
   </div>`;
 
   out.innerHTML = html;
