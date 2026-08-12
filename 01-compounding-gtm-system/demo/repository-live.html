@@ -27,9 +27,9 @@
   header.top p { margin: 0; color: #5b5b5b; font-size: 13px; max-width: 680px; }
   .badge-synthetic { background: var(--navy); color: var(--paper); font-size: 11px; font-weight: 600; padding: 5px 10px; border-radius: 20px; white-space: nowrap; letter-spacing: 0.02em; display: inline-block; margin-top: 8px; }
 
-  details.static-toggle { margin-bottom: 18px; }
-  details.static-toggle summary { cursor: pointer; font-size: 12.5px; color: #8a8a8a; font-weight: 600; padding: 4px 0; }
-  details.static-toggle .dead-body { margin-top: 8px; background: #ece9e2; border: 1px dashed var(--dead); color: #7a756a; border-radius: 8px; padding: 12px 14px; font-size: 12.5px; text-decoration: line-through; text-decoration-color: #b8b2a5; line-height: 1.6; }
+  .dead-banner { display: flex; align-items: baseline; gap: 10px; background: #ece9e2; border: 1px dashed var(--dead); color: #7a756a; border-radius: 8px; padding: 10px 14px; margin-bottom: 18px; }
+  .dead-banner .dead-label { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #8f8a7d; white-space: nowrap; }
+  .dead-banner .dead-text { font-size: 12.5px; text-decoration: line-through; text-decoration-color: #b8b2a5; line-height: 1.6; }
 
   .hero { background: var(--navy); border-radius: 12px; padding: 20px 22px; color: #fff; margin-bottom: 24px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
   .hero-account { flex: 1; min-width: 220px; }
@@ -90,10 +90,10 @@
     <span class="badge-synthetic">Synthetic data — Ledgerly / Pattern 01</span>
   </header>
 
-  <details class="static-toggle">
-    <summary>See the static filter this replaces →</summary>
-    <div class="dead-body">200–2,000 employees. $20M–$250M revenue. SaaS, healthcare, or logistics. Uses NetSuite or Sage Intacct. Series B or later. Written once. Never touched again. It would have told you nothing about the account below.</div>
-  </details>
+  <div class="dead-banner">
+    <span class="dead-label">Replaces</span>
+    <span class="dead-text">200–2,000 employees. $20M–$250M revenue. SaaS, healthcare, or logistics. Uses NetSuite or Sage Intacct. Series B or later. Written once, never touched again.</span>
+  </div>
 
   <div class="hero" id="hero"></div>
 
