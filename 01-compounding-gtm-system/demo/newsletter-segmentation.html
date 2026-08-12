@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Newsletter Segmentation — Live Workflow Demo</title>
+<style>
+  :root {
+    --navy: #0f1b2d;
+    --slate: #3a4a63;
+    --accent: #6b4c9a;
+    --paper: #f7f5f1;
+    --good: #4caf7d;
+    --warn: #e0a030;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--paper);
+    color: #1c1c1c;
+  }
+  .app { max-width: 1100px; margin: 0 auto; padding: 28px 24px 60px; }
+  header.top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 22px; flex-wrap: wrap; gap: 10px; }
+  header.top h1 { font-size: 20px; margin: 0 0 4px; letter-spacing: -0.01em; }
+  header.top p { margin: 0; color: #5b5b5b; font-size: 13px; max-width: 580px; }
+  .badge-synthetic { background: var(--navy); color: var(--paper); font-size: 11px; font-weight: 600; padding: 5px 10px; border-radius: 20px; white-space: nowrap; letter-spacing: 0.02em; }
+  .grid { display: grid; grid-template-columns: 280px 1fr; gap: 20px; }
+  @media (max-width: 820px) { .grid { grid-template-columns: 1fr; } }
+  .panel { background: #fff; border: 1px solid #e3ded4; border-radius: 10px; padding: 18px; }
+  .panel h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: #8a8a8a; margin: 0 0 12px; }
+  .note-card { margin-bottom: 18px; font-size: 12px; color: #6a6a6a; line-height: 1.5; background: #fbfaf7; border: 1px solid #e3ded4; border-radius: 7px; padding: 10px 12px; }
+  fieldset { border: none; padding: 0; margin: 0 0 18px; }
+  legend { font-size: 12px; font-weight: 600; margin-bottom: 8px; color: #333; }
+  .option { display: block; padding: 9px 10px; border: 1px solid #e3ded4; border-radius: 7px; margin-bottom: 6px; font-size: 12.5px; cursor: pointer; line-height: 1.35; }
+  .option:hover { border-color: var(--slate); }
+  .option input { margin-right: 7px; }
+  .option.selected { border-color: var(--accent); background: #f4f0f9; }
+  .toggle-row { display: flex; gap: 6px; }
+  .toggle-btn { flex: 1; padding: 9px 6px; border: 1px solid #e3ded4; border-radius: 7px; background: #fff; font-size: 12.5px; font-weight: 600; cursor: pointer; text-align: center; }
+  .toggle-btn.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .run-btn { width: 100%; padding: 12px; background: var(--accent); color: #fff; border: none; border-radius: 7px; font-size: 13.5px; font-weight: 700; cursor: pointer; letter-spacing: 0.01em; }
+  .run-btn:hover { background: #5a3f82; }
+  .output .placeholder { color: #9a9a9a; font-size: 13px; padding: 40px 10px; text-align: center; }
+  .trace-item { display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px solid #efece5; font-size: 12.5px; align-items: flex-start; }
+  .trace-item:last-child { border-bottom: none; }
+  .file-tag { font-family: "SF Mono", Consolas, monospace; font-size: 10.5px; background: var(--navy); color: var(--paper); padding: 3px 7px; border-radius: 5px; white-space: nowrap; margin-top: 1px; }
+  .trace-detail { color: #333; line-height: 1.45; }
+  .warning-banner { background: #fff3e0; border: 1px solid var(--warn); border-radius: 7px; padding: 12px 14px; font-size: 12.5px; margin-bottom: 16px; color: #7a5710; }
+  .issue-block { margin-top: 18px; border-top: 2px solid var(--navy); padding-top: 16px; }
+  .field-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: #9a9a9a; margin-bottom: 3px; margin-top: 14px; }
+  .field-label:first-child { margin-top: 0; }
+  .issue-subject { font-weight: 700; font-size: 15px; }
+  .issue-body { font-size: 13px; color: #333; line-height: 1.6; margin-top: 4px; white-space: pre-wrap; }
+  .cta-pill { display: inline-block; background: #f4f0f9; border: 1px solid #d9cbe9; color: var(--accent); font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 16px; margin-top: 4px; }
+  footer.note { margin-top: 22px; font-size: 11.5px; color: #9a9a9a; text-align: center; }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div>
+      <h1>Newsletter Segmentation</h1>
+      <p>One send, three lead stories, because the repository knows three different things about three different segments. This is also where the same pivot points from the other three spokes show up again — the week 3 BPO discovery and the week 4 timing disqualifier ripple into the newsletter exactly the way they rippled into outbound, content, and paid.</p>
+    </div>
+    <span class="badge-synthetic">Synthetic data — Ledgerly / Pattern 01</span>
+  </header>
+
+  <div class="grid">
+    <div class="panel controls">
+      <div class="note-card">Segments are built from identity and lifecycle stage rather than a single trigger. The lead story, proof points, and CTA all still trace back to the same persona and positioning files as every other spoke.</div>
+
+      <fieldset>
+        <legend>1. Segment</legend>
+        <label class="option" id="opt-prospects">
+          <input type="radio" name="segment" value="prospects" checked>
+          Engaged prospects — Tier 1, mid-funnel
+        </label>
+        <label class="option" id="opt-customers">
+          <input type="radio" name="segment" value="customers">
+          Customers — nearing renewal
+        </label>
+        <label class="option" id="opt-cold">
+          <input type="radio" name="segment" value="cold">
+          Newly subscribed — unscored
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>2. Repository version</legend>
+        <div class="toggle-row">
+          <div class="toggle-btn active" id="btn-week2" onclick="setVersion('week2')">Week 2</div>
+          <div class="toggle-btn" id="btn-week5" onclick="setVersion('week5')">Week 5 (current)</div>
+        </div>
+      </fieldset>
+
+      <button class="run-btn" onclick="runWorkflow()">Build this send →</button>
+    </div>
+
+    <div class="panel output" id="output">
+      <div class="placeholder">Select a segment and repository version, then build the send.</div>
+    </div>
+  </div>
+
+  <footer class="note">Every field below traces back to a specific file in <code>repository/</code>. The unscored segment is the honest limit of this system: without an identifying signal, there's nothing yet for the repository to personalize against.</footer>
+</div>
+
+<script>
+const scenarios = {
+  prospects: {
+    week2: {
+      trace: [
+        { file: 'icp-file.md · v2', detail: 'Tier 1 fit, no budget-timing filter applied — this segment includes some accounts later found to be out of window.' },
+        { file: 'persona-file.md · v1', detail: 'Controller pain #1: close three days late every month.' },
+        { file: 'positioning-file.md · v2', detail: 'Primary pillar: audit-ready by default. No proof point countering an outsourcing objection yet.' },
+        { file: 'competitor-radar.md · v1', detail: 'No BPO entry — this send can\'t address an objection the repository doesn\'t know exists yet.' }
+      ],
+      subject: 'Why audit season doesn\'t have to mean two weeks of chasing paper',
+      body: `Most Controllers we talk to spend the two weeks before an audit pulling backup documentation by hand. Ledgerly makes every approval audit-ready the moment it happens, so that two weeks becomes two days.
+
+If that sounds familiar, worth a look at how it works.`,
+      cta: 'See a walkthrough →'
+    },
+    week5: {
+      trace: [
+        { file: 'icp-file.md · v5', detail: 'Tier 1 fit, budget-timing filter applied — this segment now excludes accounts without a live signal.' },
+        { file: 'persona-file.md · v2', detail: 'Controller pain #1, plus the BPO objection now pre-loaded from week 3.' },
+        { file: 'positioning-file.md · v3', detail: 'Primary pillar: audit-ready by default, with the proof point added in week 3 to directly counter the outsourcing frame.' },
+        { file: 'competitor-radar.md · v2', detail: 'BPO/outsourced AP tracked as the most common objection at this segment\'s stage — the lead story addresses it head-on instead of waiting for it to come up on a call.' }
+      ],
+      subject: 'The BPO you\'re paying for isn\'t fixing your audit trail',
+      body: `If overflow AP is routed through a BPO right now, it's worth knowing that moves the manual work off your payroll, but it doesn't create an audit trail, and the cost doesn't flatten as volume grows.
+
+Ledgerly cuts audit prep from two weeks to two days, and deployed accounts haven't had a duplicate payment in two quarters. Worth a look before this changes on its own.`,
+      cta: 'See how the audit trail works →'
+    }
+  },
+  customers: {
+    week2: {
+      trace: [
+        { file: 'positioning-file.md · v2', detail: 'Proof points available: audit prep two weeks to two days, close acceleration 2.8 days.' }
+      ],
+      subject: 'What two days of audit prep actually looks like',
+      body: `A quick reminder of what changed since you came on: audit prep dropped from two weeks to two days, and close has moved up 2.8 days on average.
+
+Renewal conversations go faster when the numbers are already in front of you — here's where to find yours.`,
+      cta: 'View your account\'s numbers →'
+    },
+    week5: {
+      trace: [
+        { file: 'positioning-file.md · v3', detail: 'Same two proof points, plus the zero duplicate payment stat added in week 3 — one more data point for the renewal case.' }
+      ],
+      subject: 'What two days of audit prep actually looks like',
+      body: `A quick reminder of what changed since you came on: audit prep dropped from two weeks to two days, close has moved up 2.8 days on average, and there hasn't been a single duplicate payment in the last two quarters.
+
+Renewal conversations go faster when the numbers are already in front of you — here's where to find yours.`,
+      cta: 'View your account\'s numbers →'
+    }
+  },
+  cold: {
+    week2: {
+      unscored: true,
+      trace: [
+        { file: 'icp-file.md · v2', detail: 'No identifying signal — this segment hasn\'t been matched to a fit score or persona yet.' },
+        { file: 'signal-library.md · v1', detail: 'No signal on file for this reader. Nothing to query.' }
+      ],
+      subject: '5 signs your AP process won\'t scale past 500 invoices a month',
+      body: `General educational content, not personalized to a scored segment, since there's no identifying signal for this reader yet. Same core piece runs regardless of repository version until a signal moves them into a scored segment.`,
+      cta: 'Read the full piece →'
+    },
+    week5: {
+      unscored: true,
+      trace: [
+        { file: 'icp-file.md · v5', detail: 'Still no identifying signal — the week 4 and week 5 updates to this file don\'t change anything here, because there\'s nothing to score yet.' },
+        { file: 'signal-library.md · v4', detail: 'No signal on file for this reader, same as week 2. The new LinkedIn-post signal only matters once it fires for someone in this list.' }
+      ],
+      subject: '5 signs your AP process won\'t scale past 500 invoices a month',
+      body: `General educational content, not personalized to a scored segment, since there's no identifying signal for this reader yet. Same core piece runs regardless of repository version until a signal moves them into a scored segment.`,
+      cta: 'Read the full piece →'
+    }
+  }
+};
+
+let currentSegment = 'prospects';
+let currentVersion = 'week2';
+
+document.querySelectorAll('input[name="segment"]').forEach(el => {
+  el.addEventListener('change', () => {
+    currentSegment = el.value;
+    document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+    document.getElementById('opt-' + el.value).classList.add('selected');
+  });
+});
+document.getElementById('opt-prospects').classList.add('selected');
+
+function setVersion(v) {
+  currentVersion = v;
+  document.getElementById('btn-week2').classList.toggle('active', v === 'week2');
+  document.getElementById('btn-week5').classList.toggle('active', v === 'week5');
+}
+
+function runWorkflow() {
+  const s = scenarios[currentSegment][currentVersion];
+  const out = document.getElementById('output');
+  let html = '';
+
+  if (s.unscored) {
+    html += `<div class="warning-banner">⚠ No identifying signal for this segment. The repository has nothing to personalize against yet — this is the honest limit of the system, not a gap in it.</div>`;
+  }
+
+  html += `<h2>Retrieval trace</h2>`;
+  s.trace.forEach(t => {
+    html += `<div class="trace-item"><span class="file-tag">${t.file}</span><span class="trace-detail">${t.detail}</span></div>`;
+  });
+
+  html += `<div class="issue-block">
+    <div class="field-label">Subject line</div>
+    <div class="issue-subject">${s.subject}</div>
+    <div class="field-label">Lead story</div>
+    <div class="issue-body">${s.body}</div>
+    <div class="field-label">CTA</div>
+    <span class="cta-pill">${s.cta}</span>
+  </div>`;
+
+  out.innerHTML = html;
+}
+</script>
+</body>
+</html>

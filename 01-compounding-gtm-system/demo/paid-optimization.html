@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Paid Optimization — Live Workflow Demo</title>
+<style>
+  :root {
+    --navy: #0f1b2d;
+    --slate: #3a4a63;
+    --accent: #2f6690;
+    --paper: #f7f5f1;
+    --good: #4caf7d;
+    --warn: #e0a030;
+    --bad: #c0453f;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--paper);
+    color: #1c1c1c;
+  }
+  .app { max-width: 1100px; margin: 0 auto; padding: 28px 24px 60px; }
+  header.top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 22px; flex-wrap: wrap; gap: 10px; }
+  header.top h1 { font-size: 20px; margin: 0 0 4px; letter-spacing: -0.01em; }
+  header.top p { margin: 0; color: #5b5b5b; font-size: 13px; max-width: 580px; }
+  .badge-synthetic { background: var(--navy); color: var(--paper); font-size: 11px; font-weight: 600; padding: 5px 10px; border-radius: 20px; white-space: nowrap; letter-spacing: 0.02em; }
+  .grid { display: grid; grid-template-columns: 280px 1fr; gap: 20px; }
+  @media (max-width: 820px) { .grid { grid-template-columns: 1fr; } }
+  .panel { background: #fff; border: 1px solid #e3ded4; border-radius: 10px; padding: 18px; }
+  .panel h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: #8a8a8a; margin: 0 0 12px; }
+  .note-card { margin-bottom: 18px; font-size: 12px; color: #6a6a6a; line-height: 1.5; background: #fbfaf7; border: 1px solid #e3ded4; border-radius: 7px; padding: 10px 12px; }
+  fieldset { border: none; padding: 0; margin: 0 0 18px; }
+  legend { font-size: 12px; font-weight: 600; margin-bottom: 8px; color: #333; }
+  .option { display: block; padding: 9px 10px; border: 1px solid #e3ded4; border-radius: 7px; margin-bottom: 6px; font-size: 12.5px; cursor: pointer; line-height: 1.35; }
+  .option:hover { border-color: var(--slate); }
+  .option input { margin-right: 7px; }
+  .option.selected { border-color: var(--accent); background: #eef4f8; }
+  .toggle-row { display: flex; gap: 6px; }
+  .toggle-btn { flex: 1; padding: 9px 6px; border: 1px solid #e3ded4; border-radius: 7px; background: #fff; font-size: 12.5px; font-weight: 600; cursor: pointer; text-align: center; }
+  .toggle-btn.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .run-btn { width: 100%; padding: 12px; background: var(--accent); color: #fff; border: none; border-radius: 7px; font-size: 13.5px; font-weight: 700; cursor: pointer; letter-spacing: 0.01em; }
+  .run-btn:hover { background: #24506f; }
+  .output .placeholder { color: #9a9a9a; font-size: 13px; padding: 40px 10px; text-align: center; }
+  .trace-item { display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px solid #efece5; font-size: 12.5px; align-items: flex-start; }
+  .trace-item:last-child { border-bottom: none; }
+  .file-tag { font-family: "SF Mono", Consolas, monospace; font-size: 10.5px; background: var(--navy); color: var(--paper); padding: 3px 7px; border-radius: 5px; white-space: nowrap; margin-top: 1px; }
+  .trace-detail { color: #333; line-height: 1.45; }
+  .metrics-row { display: flex; gap: 10px; margin: 16px 0; flex-wrap: wrap; }
+  .metric-card { flex: 1; min-width: 130px; border: 1px solid #e3ded4; border-radius: 8px; padding: 12px 14px; }
+  .metric-num { font-size: 22px; font-weight: 800; color: var(--navy); }
+  .metric-num.waste-bad { color: var(--bad); }
+  .metric-num.waste-good { color: var(--good); }
+  .metric-label { font-size: 11px; color: #8a8a8a; text-transform: uppercase; letter-spacing: 0.03em; margin-top: 2px; }
+  .brief-block { margin-top: 18px; border-top: 2px solid var(--navy); padding-top: 16px; }
+  .field-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: #9a9a9a; margin-bottom: 3px; margin-top: 14px; }
+  .field-label:first-child { margin-top: 0; }
+  .ad-headline { font-weight: 700; font-size: 14.5px; }
+  .ad-body { font-size: 13px; color: #333; line-height: 1.5; margin-top: 3px; }
+  .keyword-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .keyword-chip { background: #eef4f8; border: 1px solid #cfe0eb; color: var(--accent); font-size: 11.5px; font-weight: 600; padding: 4px 9px; border-radius: 14px; }
+  .keyword-chip.new { background: #f2f8f5; border-color: #bfe0cd; color: #2f7a5c; }
+  footer.note { margin-top: 22px; font-size: 11.5px; color: #9a9a9a; text-align: center; }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div>
+      <h1>Paid Optimization</h1>
+      <p>Paid spend isn't optimized by a media buyer guessing at ICP — it's targeted and priced against the same repository. The number that matters here isn't clicks or impressions, it's how much spend goes to accounts that were never going to close this quarter.</p>
+    </div>
+    <span class="badge-synthetic">Synthetic data — Ledgerly / Pattern 01</span>
+  </header>
+
+  <div class="grid">
+    <div class="panel controls">
+      <div class="note-card">Every campaign below reads the ICP fit score to size the audience and set budget, the persona file for the angle, and the competitor radar for targeting terms. No vanity metrics — the headline number is estimated wasted spend, tied directly to the accounts that turned out to have no current-quarter signal.</div>
+
+      <fieldset>
+        <legend>1. Campaign</legend>
+        <label class="option" id="opt-abm">
+          <input type="radio" name="campaign" value="abm" checked>
+          LinkedIn ABM — Tier 1 healthcare accounts
+        </label>
+        <label class="option" id="opt-search">
+          <input type="radio" name="campaign" value="search">
+          Google Search — competitor + BPO terms
+        </label>
+        <label class="option" id="opt-retarget">
+          <input type="radio" name="campaign" value="retarget">
+          Retargeting — pricing page visitors
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>2. Repository version</legend>
+        <div class="toggle-row">
+          <div class="toggle-btn active" id="btn-week2" onclick="setVersion('week2')">Week 2</div>
+          <div class="toggle-btn" id="btn-week5" onclick="setVersion('week5')">Week 5 (current)</div>
+        </div>
+      </fieldset>
+
+      <button class="run-btn" onclick="runWorkflow()">Build campaign brief →</button>
+    </div>
+
+    <div class="panel output" id="output">
+      <div class="placeholder">Select a campaign and repository version, then build the brief.</div>
+    </div>
+  </div>
+
+  <footer class="note">Every field below traces back to a specific file in <code>repository/</code>. The wasted-spend estimate on the ABM campaign is pulled directly from the two closed-lost deals in <code>change-history.md</code> week 4, not a general industry benchmark.</footer>
+</div>
+
+<script>
+const scenarios = {
+  abm: {
+    week2: {
+      trace: [
+        { file: 'icp-file.md · v2', detail: 'Audience built from firmographic + funding-stage filter only. No budget-timing disqualifier exists yet — this was added week 4.' },
+        { file: 'signal-library.md · v1', detail: 'Funding round weight: 15, no timing check. Accounts with old funding rounds score the same as accounts with a live signal this quarter.' }
+      ],
+      audienceSize: '340 accounts',
+      avgFit: '71',
+      waste: '35%',
+      wasteClass: 'waste-bad',
+      wasteNote: 'Estimated share of budget spent on accounts later shown to have no current-quarter budget signal — the exact profile behind 2 of the 3 closed-lost deals in week 4.',
+      headline: 'Cut Audit Prep From Two Weeks to Two Days',
+      body: 'Standard audit-ready pitch, served evenly across all Series B+ healthcare accounts in range regardless of timing.',
+      keywords: null
+    },
+    week5: {
+      trace: [
+        { file: 'icp-file.md · v5', detail: 'Budget-timing disqualifier applied (added week 4): excludes accounts without a current-quarter budget or funding signal, even at high firmographic fit.' },
+        { file: 'signal-library.md · v4', detail: 'Funding round weight reduced — it correlated with fit but not with timing, and timing is what the week 4 losses were actually about.' }
+      ],
+      audienceSize: '210 accounts',
+      avgFit: '89',
+      waste: '8%',
+      wasteClass: 'waste-good',
+      wasteNote: 'Remaining waste is accounts that pass every filter but haven\'t yet shown a trigger signal — irreducible without a live signal, not a targeting error.',
+      headline: 'Cut Audit Prep From Two Weeks to Two Days — Before Your Next Audit Cycle',
+      body: 'Same core pitch, with urgency added for accounts carrying a live signal. Budget concentrated on 210 in-window accounts instead of spread across 340.',
+      keywords: null
+    }
+  },
+  search: {
+    week2: {
+      trace: [
+        { file: 'competitor-radar.md · v1', detail: 'Tipalti, Bill.com, and Ramp/Airbase tracked. No BPO/outsourced AP entry yet — added week 3.' }
+      ],
+      audienceSize: 'Search volume: competitor terms only',
+      avgFit: '—',
+      waste: null,
+      headline: 'A Faster Way to Handle Accounts Payable',
+      body: 'Bids on "Tipalti alternative," "Bill.com AP automation review," "Airbase vs [category]." Lands on general product page.',
+      keywords: ['Tipalti alternative', 'Bill.com AP automation review', 'Airbase vs AP automation'],
+      missedNote: 'Not bidding on outsourcing-comparison terms yet — missing the search volume from buyers actively comparing BPO vs. software, which discovery calls later showed was the dominant objection.'
+    },
+    week5: {
+      trace: [
+        { file: 'competitor-radar.md · v2', detail: 'BPO/outsourced AP added week 3 as a fourth alternative, with a cost-scaling and audit-trail rebuttal.' },
+        { file: 'positioning-file.md · v3', detail: 'Proof point countering the outsourcing frame directly, used in the dedicated landing variant below.' }
+      ],
+      audienceSize: 'Search volume: competitor + outsourcing-comparison terms',
+      avgFit: '—',
+      waste: null,
+      headline: 'A Faster, Cheaper Way to Handle Accounts Payable Than Outsourcing',
+      body: 'Adds bids on outsourcing-comparison terms. Traffic from those terms lands on a dedicated variant leading with the cost-scaling and audit-trail rebuttal, message-matched instead of dropped on a generic product page.',
+      keywords: ['Tipalti alternative', 'Bill.com AP automation review', 'outsource accounts payable cost', 'AP outsourcing vs software', 'BPO accounts payable alternative'],
+      missedNote: null
+    }
+  },
+  retarget: {
+    week2: {
+      trace: [
+        { file: 'persona-file.md · v1', detail: 'Controller pain #1: "we close three days late every month because approvals sit in email."' }
+      ],
+      audienceSize: 'Website visitors, viewed pricing, no conversion, 14-day window',
+      avgFit: '—',
+      waste: null,
+      headline: 'Still Thinking About It?',
+      body: 'Here\'s what a two-day audit prep actually looks like, compared to what most teams run today.',
+      keywords: null
+    },
+    week5: {
+      trace: [
+        { file: 'persona-file.md · v2', detail: 'Same pain point as week 2 — this hasn\'t changed. The proof behind it has.' },
+        { file: 'positioning-file.md · v3', detail: 'Zero duplicate payment proof point added as a secondary line, stacked with the existing audit-prep stat.' }
+      ],
+      audienceSize: 'Website visitors, viewed pricing, no conversion, 14-day window',
+      avgFit: '—',
+      waste: null,
+      headline: 'Still Thinking About It?',
+      body: 'Here\'s what a two-day audit prep actually looks like, and why deployed accounts haven\'t had a duplicate payment in two quarters.',
+      keywords: null
+    }
+  }
+};
+
+let currentCampaign = 'abm';
+let currentVersion = 'week2';
+
+document.querySelectorAll('input[name="campaign"]').forEach(el => {
+  el.addEventListener('change', () => {
+    currentCampaign = el.value;
+    document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+    document.getElementById('opt-' + el.value).classList.add('selected');
+  });
+});
+document.getElementById('opt-abm').classList.add('selected');
+
+function setVersion(v) {
+  currentVersion = v;
+  document.getElementById('btn-week2').classList.toggle('active', v === 'week2');
+  document.getElementById('btn-week5').classList.toggle('active', v === 'week5');
+}
+
+function runWorkflow() {
+  const s = scenarios[currentCampaign][currentVersion];
+  const out = document.getElementById('output');
+  let html = '';
+
+  html += `<h2>Retrieval trace</h2>`;
+  s.trace.forEach(t => {
+    html += `<div class="trace-item"><span class="file-tag">${t.file}</span><span class="trace-detail">${t.detail}</span></div>`;
+  });
+
+  html += `<div class="metrics-row">
+    <div class="metric-card"><div class="metric-num" style="font-size:16px;">${s.audienceSize}</div><div class="metric-label">Audience</div></div>
+    ${s.avgFit !== '—' ? `<div class="metric-card"><div class="metric-num">${s.avgFit}</div><div class="metric-label">Avg. fit score</div></div>` : ''}
+    ${s.waste ? `<div class="metric-card"><div class="metric-num ${s.wasteClass}">${s.waste}</div><div class="metric-label">Est. wasted spend</div></div>` : ''}
+  </div>`;
+
+  if (s.wasteNote) {
+    html += `<div class="note-card" style="margin-bottom:0;">${s.wasteNote}</div>`;
+  }
+  if (s.missedNote) {
+    html += `<div class="note-card" style="margin-top:10px; margin-bottom:0; border-color:${currentVersion === 'week2' ? '#e0a030' : '#e3ded4'};">${s.missedNote}</div>`;
+  }
+
+  html += `<div class="brief-block">
+    <div class="field-label">Ad headline</div>
+    <div class="ad-headline">${s.headline}</div>
+    <div class="field-label">Ad body / landing angle</div>
+    <div class="ad-body">${s.body}</div>`;
+
+  if (s.keywords) {
+    html += `<div class="field-label">Targeting terms</div><div class="keyword-list">`;
+    s.keywords.forEach(k => {
+      const isNew = currentVersion === 'week5' && !scenarios.search.week2.keywords.includes(k);
+      html += `<span class="keyword-chip${isNew ? ' new' : ''}">${k}</span>`;
+    });
+    html += `</div>`;
+  }
+
+  html += `</div>`;
+  out.innerHTML = html;
+}
+</script>
+</body>
+</html>

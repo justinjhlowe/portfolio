@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Signal-to-Sequence — Live Workflow Demo</title>
+<style>
+  :root {
+    --navy: #0f1b2d;
+    --navy-light: #16263f;
+    --slate: #3a4a63;
+    --accent: #ff6b35;
+    --accent-dim: #ffb094;
+    --paper: #f7f5f1;
+    --line: #2a3a52;
+    --good: #4caf7d;
+    --warn: #e0a030;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--paper);
+    color: #1c1c1c;
+  }
+  .app { max-width: 1100px; margin: 0 auto; padding: 28px 24px 60px; }
+  header.top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 22px; flex-wrap: wrap; gap: 10px;
+  }
+  header.top h1 { font-size: 20px; margin: 0 0 4px; letter-spacing: -0.01em; }
+  header.top p { margin: 0; color: #5b5b5b; font-size: 13px; max-width: 560px; }
+  .badge-synthetic {
+    background: var(--navy); color: var(--paper); font-size: 11px; font-weight: 600;
+    padding: 5px 10px; border-radius: 20px; white-space: nowrap; letter-spacing: 0.02em;
+  }
+  .grid { display: grid; grid-template-columns: 280px 1fr; gap: 20px; }
+  @media (max-width: 820px) { .grid { grid-template-columns: 1fr; } }
+  .panel {
+    background: #fff; border: 1px solid #e3ded4; border-radius: 10px; padding: 18px;
+  }
+  .panel h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: #8a8a8a; margin: 0 0 12px; }
+  .account-card { margin-bottom: 18px; }
+  .account-card .name { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+  .account-card .meta { font-size: 12px; color: #6a6a6a; line-height: 1.5; }
+  fieldset { border: none; padding: 0; margin: 0 0 18px; }
+  legend { font-size: 12px; font-weight: 600; margin-bottom: 8px; color: #333; }
+  .option {
+    display: block; padding: 9px 10px; border: 1px solid #e3ded4; border-radius: 7px;
+    margin-bottom: 6px; font-size: 12.5px; cursor: pointer; line-height: 1.35;
+  }
+  .option:hover { border-color: var(--slate); }
+  .option input { margin-right: 7px; }
+  .option.selected { border-color: var(--accent); background: #fff6f2; }
+  .toggle-row { display: flex; gap: 6px; }
+  .toggle-btn {
+    flex: 1; padding: 9px 6px; border: 1px solid #e3ded4; border-radius: 7px;
+    background: #fff; font-size: 12.5px; font-weight: 600; cursor: pointer; text-align: center;
+  }
+  .toggle-btn.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .run-btn {
+    width: 100%; padding: 12px; background: var(--accent); color: #fff; border: none;
+    border-radius: 7px; font-size: 13.5px; font-weight: 700; cursor: pointer; letter-spacing: 0.01em;
+  }
+  .run-btn:hover { background: #e85a24; }
+  .output .placeholder { color: #9a9a9a; font-size: 13px; padding: 40px 10px; text-align: center; }
+  .scorebar { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .score-num { font-size: 30px; font-weight: 800; color: var(--navy); }
+  .score-tier { background: var(--good); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 12px; }
+  .score-tier.tier2 { background: var(--warn); }
+  .score-label { font-size: 12px; color: #6a6a6a; }
+  .trace-item {
+    display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px solid #efece5; font-size: 12.5px; align-items: flex-start;
+  }
+  .trace-item:last-child { border-bottom: none; }
+  .file-tag {
+    font-family: "SF Mono", Consolas, monospace; font-size: 10.5px; background: var(--navy);
+    color: var(--paper); padding: 3px 7px; border-radius: 5px; white-space: nowrap; margin-top: 1px;
+  }
+  .trace-detail { color: #333; line-height: 1.45; }
+  .warning-banner {
+    background: #fff3e0; border: 1px solid var(--warn); border-radius: 7px; padding: 12px 14px;
+    font-size: 12.5px; margin-bottom: 16px; color: #7a5710;
+  }
+  .seq-block { margin-top: 18px; border-top: 2px solid var(--navy); padding-top: 16px; }
+  .seq-subject { font-weight: 700; font-size: 14px; margin-bottom: 8px; }
+  .seq-body {
+    background: #fbfaf7; border: 1px solid #e3ded4; border-radius: 7px; padding: 14px 16px;
+    font-size: 13px; line-height: 1.6; white-space: pre-wrap;
+  }
+  .touch-row { display: flex; gap: 8px; margin-top: 10px; font-size: 12px; color: #5b5b5b; }
+  .touch-tag { font-weight: 700; color: var(--navy); white-space: nowrap; }
+  footer.note { margin-top: 22px; font-size: 11.5px; color: #9a9a9a; text-align: center; }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div>
+      <h1>Signal-to-Sequence</h1>
+      <p>A trigger fires, the workflow queries the GTM repository, and writes a sequence grounded in accumulated context instead of a rep's memory. Toggle the repository version to see the same trigger produce a different output as the repository compounds.</p>
+    </div>
+    <span class="badge-synthetic">Synthetic data — Ledgerly / Pattern 01</span>
+  </header>
+
+  <div class="grid">
+    <div class="panel controls">
+      <div class="account-card">
+        <h2>Target Account</h2>
+        <div class="name">Meridian Health Partners</div>
+        <div class="meta">
+          Contact: Sarah Chen, Controller (hired 6 weeks ago)<br>
+          650 employees · $85M revenue · healthcare services<br>
+          NetSuite ERP · Series C, 18 months ago
+        </div>
+      </div>
+
+      <fieldset>
+        <legend>1. Trigger signal</legend>
+        <label class="option" id="opt-controller_hire">
+          <input type="radio" name="trigger" value="controller_hire" checked>
+          New Controller hired — Sarah Chen joins as Controller
+        </label>
+        <label class="option" id="opt-audit_finding">
+          <input type="radio" name="trigger" value="audit_finding">
+          Audit finding — FY24 audit flagged AP process gaps
+        </label>
+        <label class="option" id="opt-linkedin_post">
+          <input type="radio" name="trigger" value="linkedin_post">
+          Controller LinkedIn post — "month-end close is taking too long again"
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>2. Repository version</legend>
+        <div class="toggle-row">
+          <div class="toggle-btn active" id="btn-week2" onclick="setVersion('week2')">Week 2</div>
+          <div class="toggle-btn" id="btn-week5" onclick="setVersion('week5')">Week 5 (current)</div>
+        </div>
+      </fieldset>
+
+      <button class="run-btn" onclick="runWorkflow()">Run signal-to-sequence →</button>
+    </div>
+
+    <div class="panel output" id="output">
+      <div class="placeholder">Select a trigger and repository version, then run the workflow.</div>
+    </div>
+  </div>
+
+  <footer class="note">Every line in the output below traces back to a specific file in <code>repository/</code>. Nothing here is generic AI copy — it's assembled from the ICP score, persona pain, positioning pillar, and competitor angle the repository returns for this trigger and this version.</footer>
+</div>
+
+<script>
+const scenarios = {
+  controller_hire: {
+    week2: {
+      score: 78, tier: 1,
+      trace: [
+        { file: 'icp-file.md · v2', detail: 'Fit score 78 (Tier 1). Signal matched: new Controller/VP Finance hire, weight 25.' },
+        { file: 'persona-file.md · v1', detail: 'Controller pain #1 pulled: "we close three days late every month because approvals sit in email."' },
+        { file: 'positioning-file.md · v2', detail: 'Primary pillar: Audit-ready by default. Proof point: audit prep time, two weeks to two days.' },
+        { file: 'competitor-radar.md · v1', detail: 'No BPO objection tracked yet — this file did not exist until week 3.' }
+      ],
+      subject: 'Congrats on the new role, Sarah',
+      body: `Saw you joined Meridian as Controller. First 90 days usually means auditing how close actually runs.
+
+Most Controllers we talk to are still closing a few days late every month because approvals sit in someone's inbox. We built Ledgerly to cut audit prep from two weeks to two days by making every approval audit-ready the moment it happens.
+
+Worth 15 minutes to see if it's relevant to how Meridian runs close?`,
+      touch2: 'Proof point on close acceleration (2.8 days average across deployed accounts).',
+      touch3: 'Offer a peer reference call with another Controller.'
+    },
+    week5: {
+      score: 91, tier: 1,
+      trace: [
+        { file: 'icp-file.md · v5', detail: 'Fit score 91 (Tier 1). Signal matched: new Controller/VP Finance hire, weight 25.' },
+        { file: 'persona-file.md · v2', detail: 'Controller pain #1 pulled, plus BPO objection now pre-loaded from persona-file.md v2 (added week 3).' },
+        { file: 'positioning-file.md · v3', detail: 'Primary pillar: Audit-ready by default. Proof points: audit prep two weeks to two days, plus zero duplicate payments in two quarters.' },
+        { file: 'competitor-radar.md · v2', detail: 'BPO/outsourced AP flagged as the most likely objection at this account stage — pre-emptive line inserted before it can be raised.' }
+      ],
+      subject: 'Congrats on the new role, Sarah',
+      body: `Saw you joined Meridian as Controller. First 90 days usually means auditing how close actually runs, especially with the FY24 audit finding still fresh.
+
+If overflow AP is currently routed through a BPO, worth knowing that doesn't close the audit trail gap, it just moves the manual work off your payroll. We cut audit prep from two weeks to two days, and deployed accounts haven't had a duplicate payment in the last two quarters.
+
+Worth 15 minutes to see if it's relevant to Meridian?`,
+      touch2: 'Close acceleration proof point, paired with a healthcare-vertical peer reference.',
+      touch3: 'Direct ask timed to the FY24 audit cycle.'
+    }
+  },
+  audit_finding: {
+    week2: {
+      score: 88, tier: 1,
+      trace: [
+        { file: 'icp-file.md · v2', detail: 'Fit score 88 (Tier 1). Signal matched: audit finding in press, weight 25.' },
+        { file: 'positioning-file.md · v2', detail: 'Primary pillar: Audit-ready by default. Proof point: audit prep time, two weeks to two days.' },
+        { file: 'competitor-radar.md · v1', detail: 'No competitor angle needed — trigger is finding-specific, not comparison-specific.' }
+      ],
+      subject: "Meridian's FY24 audit finding",
+      body: `Saw the FY24 audit flagged gaps in the AP process. That's usually a controls and documentation problem more than a headcount problem.
+
+Ledgerly makes every approval audit-ready the moment it's processed. Accounts using it have cut audit prep from two weeks to two days.
+
+Worth a quick look before next year's audit cycle?`,
+      touch2: 'Proof point on close acceleration.',
+      touch3: 'Offer to walk through the audit trail feature live.'
+    },
+    week5: {
+      score: 88, tier: 1,
+      trace: [
+        { file: 'icp-file.md · v5', detail: 'Fit score 88 (Tier 1). Signal weight unchanged since week 1 — this signal has held steady through every revision.' },
+        { file: 'positioning-file.md · v3', detail: 'Primary pillar: Audit-ready by default. Proof points: two weeks to two days, plus zero duplicate payments added v3.' },
+        { file: 'competitor-radar.md · v2', detail: 'No competitor angle needed for this trigger — confirms the repository only adds an objection line when the trigger actually calls for it.' }
+      ],
+      subject: "Meridian's FY24 audit finding",
+      body: `Saw the FY24 audit flagged gaps in the AP process. That's usually a controls and documentation problem more than a headcount problem.
+
+Ledgerly makes every approval audit-ready the moment it's processed. Accounts using it have cut audit prep from two weeks to two days, and haven't had a duplicate payment in the last two quarters.
+
+Worth a quick look before next year's audit cycle?`,
+      touch2: 'Proof point on close acceleration, same as week 2.',
+      touch3: 'Offer to walk through the audit trail feature live.'
+    }
+  },
+  linkedin_post: {
+    week2: {
+      score: 55, tier: 2, notFound: true,
+      trace: [
+        { file: 'signal-library.md · v1', detail: '"Controller posts about close pain on LinkedIn" is not a tracked signal in this version — it wasn\'t added until week 5.' },
+        { file: 'icp-file.md · v2', detail: 'No signal match. Score falls back to firmographic baseline only: 55 (Tier 2).' }
+      ],
+      subject: 'Quick intro — Ledgerly',
+      body: `Hi Sarah,
+
+Hope things are going well at Meridian. Wanted to share how Ledgerly helps finance teams automate accounts payable and speed up close.
+
+Happy to send more information if useful.`,
+      touch2: 'Generic feature overview.',
+      touch3: 'Breakup email, low personalization.'
+    },
+    week5: {
+      score: 96, tier: 1,
+      trace: [
+        { file: 'signal-library.md · v4', detail: 'Signal matched: Controller LinkedIn post about close pain, weight 20 — added week 5 directly from the pattern in the one closed-won deal.' },
+        { file: 'icp-file.md · v5', detail: 'Fit score 96 (Tier 1) — new signal stacked on top of existing firmographic and role fit.' },
+        { file: 'positioning-file.md · v3', detail: 'Primary pillar: Audit-ready by default. Proof point: two weeks to two days, plus close acceleration of 2.8 days.' }
+      ],
+      subject: 'Saw your post about close',
+      body: `Saw your post about month-end close taking longer than it should.
+
+That's almost word for word what our last closed customer's Controller said before we cut their audit prep from two weeks to two days and closed three days faster on average.
+
+Given the timing, worth a quick look at how Meridian's approval flow is set up?`,
+      touch2: 'Reference the specific proof point again, offer the peer reference directly.',
+      touch3: 'Direct ask, no further nurture — score of 96 skips the standard nurture sequence.'
+    }
+  }
+};
+
+let currentTrigger = 'controller_hire';
+let currentVersion = 'week2';
+
+document.querySelectorAll('input[name="trigger"]').forEach(el => {
+  el.addEventListener('change', () => {
+    currentTrigger = el.value;
+    document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+    document.getElementById('opt-' + el.value).classList.add('selected');
+  });
+});
+document.getElementById('opt-controller_hire').classList.add('selected');
+
+function setVersion(v) {
+  currentVersion = v;
+  document.getElementById('btn-week2').classList.toggle('active', v === 'week2');
+  document.getElementById('btn-week5').classList.toggle('active', v === 'week5');
+}
+
+function runWorkflow() {
+  const s = scenarios[currentTrigger][currentVersion];
+  const out = document.getElementById('output');
+  let html = '';
+
+  if (s.notFound) {
+    html += `<div class="warning-banner">⚠ Signal not recognized in this repository version. The workflow found no scored match and fell back to generic Tier-2 outreach.</div>`;
+  }
+
+  html += `<div class="scorebar">
+    <div class="score-num">${s.score}</div>
+    <div>
+      <span class="score-tier ${s.tier === 2 ? 'tier2' : ''}">Tier ${s.tier}</span>
+      <div class="score-label">Fit score, from icp-file.md</div>
+    </div>
+  </div>`;
+
+  html += `<h2>Retrieval trace</h2>`;
+  s.trace.forEach(t => {
+    html += `<div class="trace-item"><span class="file-tag">${t.file}</span><span class="trace-detail">${t.detail}</span></div>`;
+  });
+
+  html += `<div class="seq-block">
+    <h2>Generated sequence — Touch 1</h2>
+    <div class="seq-subject">Subject: ${s.subject}</div>
+    <div class="seq-body">${s.body}</div>
+    <div class="touch-row"><span class="touch-tag">Touch 2:</span> ${s.touch2}</div>
+    <div class="touch-row"><span class="touch-tag">Touch 3:</span> ${s.touch3}</div>
+  </div>`;
+
+  out.innerHTML = html;
+}
+</script>
+</body>
+</html>

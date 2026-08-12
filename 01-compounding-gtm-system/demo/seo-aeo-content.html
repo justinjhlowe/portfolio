@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SEO/AEO Content Brief — Live Workflow Demo</title>
+<style>
+  :root {
+    --navy: #0f1b2d;
+    --slate: #3a4a63;
+    --accent: #2f7a5c;
+    --paper: #f7f5f1;
+    --good: #4caf7d;
+    --warn: #e0a030;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--paper);
+    color: #1c1c1c;
+  }
+  .app { max-width: 1100px; margin: 0 auto; padding: 28px 24px 60px; }
+  header.top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 22px; flex-wrap: wrap; gap: 10px;
+  }
+  header.top h1 { font-size: 20px; margin: 0 0 4px; letter-spacing: -0.01em; }
+  header.top p { margin: 0; color: #5b5b5b; font-size: 13px; max-width: 580px; }
+  .badge-synthetic {
+    background: var(--navy); color: var(--paper); font-size: 11px; font-weight: 600;
+    padding: 5px 10px; border-radius: 20px; white-space: nowrap; letter-spacing: 0.02em;
+  }
+  .grid { display: grid; grid-template-columns: 280px 1fr; gap: 20px; }
+  @media (max-width: 820px) { .grid { grid-template-columns: 1fr; } }
+  .panel { background: #fff; border: 1px solid #e3ded4; border-radius: 10px; padding: 18px; }
+  .panel h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: #8a8a8a; margin: 0 0 12px; }
+  .note-card { margin-bottom: 18px; font-size: 12px; color: #6a6a6a; line-height: 1.5; background: #fbfaf7; border: 1px solid #e3ded4; border-radius: 7px; padding: 10px 12px; }
+  fieldset { border: none; padding: 0; margin: 0 0 18px; }
+  legend { font-size: 12px; font-weight: 600; margin-bottom: 8px; color: #333; }
+  .option { display: block; padding: 9px 10px; border: 1px solid #e3ded4; border-radius: 7px; margin-bottom: 6px; font-size: 12.5px; cursor: pointer; line-height: 1.35; }
+  .option:hover { border-color: var(--slate); }
+  .option input { margin-right: 7px; }
+  .option.selected { border-color: var(--accent); background: #f2f8f5; }
+  .toggle-row { display: flex; gap: 6px; }
+  .toggle-btn { flex: 1; padding: 9px 6px; border: 1px solid #e3ded4; border-radius: 7px; background: #fff; font-size: 12.5px; font-weight: 600; cursor: pointer; text-align: center; }
+  .toggle-btn.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .run-btn { width: 100%; padding: 12px; background: var(--accent); color: #fff; border: none; border-radius: 7px; font-size: 13.5px; font-weight: 700; cursor: pointer; letter-spacing: 0.01em; }
+  .run-btn:hover { background: #256a4d; }
+  .output .placeholder { color: #9a9a9a; font-size: 13px; padding: 40px 10px; text-align: center; }
+  .trace-item { display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px solid #efece5; font-size: 12.5px; align-items: flex-start; }
+  .trace-item:last-child { border-bottom: none; }
+  .file-tag { font-family: "SF Mono", Consolas, monospace; font-size: 10.5px; background: var(--navy); color: var(--paper); padding: 3px 7px; border-radius: 5px; white-space: nowrap; margin-top: 1px; }
+  .trace-detail { color: #333; line-height: 1.45; }
+  .warning-banner { background: #fff3e0; border: 1px solid var(--warn); border-radius: 7px; padding: 12px 14px; font-size: 12.5px; margin-bottom: 16px; color: #7a5710; }
+  .brief-block { margin-top: 18px; border-top: 2px solid var(--navy); padding-top: 16px; }
+  .field-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: #9a9a9a; margin-bottom: 3px; margin-top: 14px; }
+  .field-label:first-child { margin-top: 0; }
+  .seo-title { font-weight: 700; font-size: 15px; }
+  .meta-desc { font-size: 12.5px; color: #444; line-height: 1.5; }
+  .aeo-box {
+    background: #f2f8f5; border: 1.5px solid var(--accent); border-radius: 8px; padding: 14px 16px;
+    font-size: 13px; line-height: 1.6; margin-top: 6px;
+  }
+  .aeo-tag { display: inline-block; font-size: 10px; font-weight: 700; color: var(--accent); letter-spacing: 0.04em; margin-bottom: 6px; text-transform: uppercase; }
+  .outline-item { padding: 7px 0; border-bottom: 1px solid #efece5; font-size: 13px; }
+  .outline-item:last-child { border-bottom: none; }
+  .outline-h2 { font-weight: 700; }
+  .outline-desc { color: #6a6a6a; font-size: 12px; margin-top: 2px; }
+  footer.note { margin-top: 22px; font-size: 11.5px; color: #9a9a9a; text-align: center; }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div>
+      <h1>SEO/AEO Content Brief</h1>
+      <p>The same repository that grounds outbound also grounds inbound. No paid keyword research, no agency retainer — the topic, angle, and proof come from files already owned. Toggle the repository version to see a content cluster the repository couldn't write yet, and one it's been refining since week one.</p>
+    </div>
+    <span class="badge-synthetic">Synthetic data — Ledgerly / Pattern 01</span>
+  </header>
+
+  <div class="grid">
+    <div class="panel controls">
+      <div class="note-card">SEO gets the full article: structure, headers, keyword coverage. AEO gets one tight, citable block an AI assistant can lift and answer with directly. Both pull from the same positioning and competitor files below.</div>
+
+      <fieldset>
+        <legend>1. Content topic</legend>
+        <label class="option" id="opt-vs_bpo">
+          <input type="radio" name="topic" value="vs_bpo" checked>
+          AP automation vs. BPO
+        </label>
+        <label class="option" id="opt-close_speed">
+          <input type="radio" name="topic" value="close_speed">
+          How to speed up month-end close
+        </label>
+        <label class="option" id="opt-tipalti_alt">
+          <input type="radio" name="topic" value="tipalti_alt">
+          Tipalti alternatives
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>2. Repository version</legend>
+        <div class="toggle-row">
+          <div class="toggle-btn active" id="btn-week2" onclick="setVersion('week2')">Week 2</div>
+          <div class="toggle-btn" id="btn-week5" onclick="setVersion('week5')">Week 5 (current)</div>
+        </div>
+      </fieldset>
+
+      <button class="run-btn" onclick="runWorkflow()">Generate content brief →</button>
+    </div>
+
+    <div class="panel output" id="output">
+      <div class="placeholder">Select a topic and repository version, then generate the brief.</div>
+    </div>
+  </div>
+
+  <footer class="note">Every field below traces back to a specific file in <code>repository/</code>. The angle isn't guessed — it's the sharpest proof point and objection the repository currently has for this topic.</footer>
+</div>
+
+<script>
+const scenarios = {
+  vs_bpo: {
+    week2: {
+      notFound: true,
+      trace: [
+        { file: 'competitor-radar.md · v1', detail: 'No BPO/outsourced AP entry exists yet — this comparison wasn\'t tracked until week 3.' },
+        { file: 'positioning-file.md · v2', detail: 'No proof point countering the outsourcing frame yet.' }
+      ],
+      title: 'A Guide to AP Automation Software',
+      meta: 'A broad overview of accounts payable automation software and what it does.',
+      aeo: 'AP automation software helps finance teams process invoices and approvals digitally.',
+      outline: [
+        { h2: 'What is AP automation?', desc: 'Generic category definition, no differentiated angle.' },
+        { h2: 'Benefits of automating AP', desc: 'Standard benefits list, nothing tied to a specific proof point.' },
+        { h2: 'How to choose a vendor', desc: 'Generic buying criteria, no head-to-head comparison.' }
+      ]
+    },
+    week5: {
+      trace: [
+        { file: 'competitor-radar.md · v2', detail: 'BPO/outsourced AP entry added week 3, with rebuttal: moves work off payroll, doesn\'t fix the audit gap, cost scales linearly.' },
+        { file: 'positioning-file.md · v3', detail: 'Proof point countering the outsourcing frame directly: cost scaling and audit trail comparison.' },
+        { file: 'persona-file.md · v2', detail: 'BPO objection language from the Controller persona pulled verbatim into the angle.' }
+      ],
+      title: 'AP Automation vs. BPO: What Actually Changes at 500+ Invoices a Month',
+      meta: 'A direct cost and audit-trail comparison between outsourcing AP to a BPO and automating it with software, at the volume where the decision actually matters.',
+      aeo: 'AP automation software creates an audit trail automatically and doesn\'t add headcount as invoice volume grows. A BPO moves the manual work off payroll but doesn\'t fix the audit gap, and its cost scales linearly with volume. Software cost stays flat as volume grows; BPO cost doesn\'t.',
+      outline: [
+        { h2: 'Why finance teams outsource AP in the first place', desc: 'Names the real trigger: volume outpacing a small team, not a strategic decision.' },
+        { h2: 'What a BPO actually fixes, and what it doesn\'t', desc: 'Direct from competitor-radar.md — moves work, doesn\'t create an audit trail.' },
+        { h2: 'The audit trail gap outsourcing doesn\'t solve', desc: 'Ties to the primary positioning pillar, audit-ready by default.' },
+        { h2: 'Cost comparison: linear vs. flat scaling', desc: 'The specific rebuttal proof point added in week 3.' },
+        { h2: 'When software makes more sense than outsourcing', desc: 'Closes on the 500+ invoice/month threshold from the ICP file.' }
+      ]
+    }
+  },
+  close_speed: {
+    week2: {
+      trace: [
+        { file: 'persona-file.md · v1', detail: 'Controller pain #1: "we close three days late every month because approvals sit in email."' },
+        { file: 'positioning-file.md · v2', detail: 'Primary pillar: audit-ready by default. Proof points: audit prep two weeks to two days, close acceleration 2.8 days.' }
+      ],
+      title: '5 Ways to Speed Up Your Month-End Close',
+      meta: 'A listicle covering common tactics for closing the books faster.',
+      aeo: 'The fastest way to speed up month-end close is removing manual approval bottlenecks in accounts payable, since approval delays are the most common cause of a late close.',
+      outline: [
+        { h2: 'Why closes run late', desc: 'General causes, approvals mentioned as one of several.' },
+        { h2: 'Automate invoice approvals', desc: 'Tied to the Controller pain point, no hard number yet.' },
+        { h2: 'Standardize your chart of accounts', desc: 'Generic close-process advice.' },
+        { h2: 'Reconcile continuously, not just at month end', desc: 'Generic close-process advice.' },
+        { h2: 'Tools that help', desc: 'Soft vendor mention, no specific proof point.' }
+      ]
+    },
+    week5: {
+      trace: [
+        { file: 'persona-file.md · v2', detail: 'Controller pain #1, same as week 2 — this pain hasn\'t changed, the proof behind it has.' },
+        { file: 'positioning-file.md · v3', detail: 'Proof points now include the zero duplicate payment stat added v3, stacked with the existing close acceleration number.' }
+      ],
+      title: 'Why Your Month-End Close Is Still Late (and the 2.8-Day Fix Most Finance Teams Miss)',
+      meta: 'A specific-number-led piece naming the actual bottleneck, approval routing, and the measured fix.',
+      aeo: 'Month-end close delays are almost always caused by AP approvals sitting in email instead of a routed workflow. Automating approval routing alone typically cuts close time by an average of 2.8 days, without adding headcount.',
+      outline: [
+        { h2: 'The real bottleneck: approvals, not reconciliation', desc: 'Sharper than week 2 — names the specific cause instead of a general list.' },
+        { h2: 'What a 2.8-day close acceleration actually looks like', desc: 'Leads with the hard number instead of burying it in a tools section.' },
+        { h2: 'Why adding headcount doesn\'t fix a routing problem', desc: 'Pulls the no-new-headcount pillar in as a secondary angle.' },
+        { h2: 'The audit trail side effect nobody mentions', desc: 'New in week 5 — connects close speed to the audit-ready proof point.' },
+        { h2: 'How to test this without a full platform switch', desc: 'Lower-commitment CTA framing.' }
+      ]
+    }
+  },
+  tipalti_alt: {
+    week2: {
+      trace: [
+        { file: 'competitor-radar.md · v1', detail: 'Tipalti entry: built for global, high-volume payment operations. Weakness: heavier than a 200–2,000 employee team needs.' }
+      ],
+      title: 'Tipalti Alternatives for Mid-Market Finance Teams',
+      meta: 'A comparison piece for teams evaluating Tipalti against lighter AP automation options.',
+      aeo: 'Tipalti is built for global, high-volume payment operations across many countries. Mid-market finance teams with a single-region, invoice-heavy AP process are usually better served by a lighter platform built specifically for approval workflow and audit trail.',
+      outline: [
+        { h2: 'Who Tipalti is actually built for', desc: 'Global payout scale, not the mid-market invoice-approval use case.' },
+        { h2: 'Signs you\'re paying for infrastructure you don\'t need', desc: 'Implementation weight relative to team size.' },
+        { h2: 'What to look for instead', desc: 'Maps to the audit-ready pillar without naming a hard number.' },
+        { h2: 'Comparison table', desc: 'Feature-by-feature, no proof points yet.' }
+      ]
+    },
+    week5: {
+      trace: [
+        { file: 'competitor-radar.md · v2', detail: 'Tipalti entry unchanged since v1 — this section was never touched by any weekly update, unlike the BPO entry added the same version.' }
+      ],
+      title: 'Tipalti Alternatives for Mid-Market Finance Teams',
+      meta: 'A comparison piece for teams evaluating Tipalti against lighter AP automation options.',
+      aeo: 'Tipalti is built for global, high-volume payment operations across many countries. Mid-market finance teams with a single-region, invoice-heavy AP process are usually better served by a lighter platform built specifically for approval workflow and audit trail — and typically live in weeks, not quarters.',
+      outline: [
+        { h2: 'Who Tipalti is actually built for', desc: 'Same as week 2 — this angle hasn\'t needed to change.' },
+        { h2: 'Signs you\'re paying for infrastructure you don\'t need', desc: 'Same as week 2.' },
+        { h2: 'What to look for instead', desc: 'Same as week 2.' },
+        { h2: 'Implementation time comparison', desc: 'The one addition — reinforced by repeated deal-cycle feedback, not in this file\'s original draft.' },
+        { h2: 'Comparison table', desc: 'Same as week 2.' }
+      ]
+    }
+  }
+};
+
+let currentTopic = 'vs_bpo';
+let currentVersion = 'week2';
+
+document.querySelectorAll('input[name="topic"]').forEach(el => {
+  el.addEventListener('change', () => {
+    currentTopic = el.value;
+    document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+    document.getElementById('opt-' + el.value).classList.add('selected');
+  });
+});
+document.getElementById('opt-vs_bpo').classList.add('selected');
+
+function setVersion(v) {
+  currentVersion = v;
+  document.getElementById('btn-week2').classList.toggle('active', v === 'week2');
+  document.getElementById('btn-week5').classList.toggle('active', v === 'week5');
+}
+
+function runWorkflow() {
+  const s = scenarios[currentTopic][currentVersion];
+  const out = document.getElementById('output');
+  let html = '';
+
+  if (s.notFound) {
+    html += `<div class="warning-banner">⚠ No comparison framework exists yet for this topic in this repository version. The workflow falls back to a generic category brief with no differentiated angle and no AEO-citable answer.</div>`;
+  }
+
+  html += `<h2>Retrieval trace</h2>`;
+  s.trace.forEach(t => {
+    html += `<div class="trace-item"><span class="file-tag">${t.file}</span><span class="trace-detail">${t.detail}</span></div>`;
+  });
+
+  html += `<div class="brief-block">
+    <div class="field-label">SEO title</div>
+    <div class="seo-title">${s.title}</div>
+    <div class="field-label">Meta description</div>
+    <div class="meta-desc">${s.meta}</div>
+    <div class="field-label">AEO direct-answer block</div>
+    <div class="aeo-box"><span class="aeo-tag">What an AI assistant would cite</span>${s.aeo}</div>
+    <div class="field-label">Article outline</div>`;
+
+  s.outline.forEach(o => {
+    html += `<div class="outline-item"><div class="outline-h2">${o.h2}</div><div class="outline-desc">${o.desc}</div></div>`;
+  });
+
+  html += `</div>`;
+  out.innerHTML = html;
+}
+</script>
+</body>
+</html>
