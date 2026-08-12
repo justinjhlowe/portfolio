@@ -1,6 +1,8 @@
 # ICP File — Ledgerly
 
-**Version:** 5 | **Last updated:** week 5 | **Owner:** GTM repository | **Change log:** see `change-history.md`
+**Version:** 3 | **Last updated:** week 4 | **Owner:** GTM repository | **Change log:** see `change-history.md`
+
+This file's own version hasn't moved since week 4, even though the scores it produces keep changing. That's not staleness, it's the design: this file owns the gate, the disqualifiers, and the tiers. It doesn't own the signal weights. See "How scoring actually works" below.
 
 ## The static filter this replaces
 
@@ -22,16 +24,11 @@ Same firmographic core, but every signal below carries a weight, every weight is
 - ERP: NetSuite or Sage Intacct (disqualify if custom-built ERP or QuickBooks — deal cycle data shows these accounts aren't ready)
 - Funding stage: Series B or later, OR profitable with $20M+ revenue
 
-### Scored signals (fit score, 0–100)
+### How scoring actually works
 
-| Signal | Weight | Source | What it indicates |
-|---|---|---|---|
-| Audit finding or restatement mentioned in press/filings | 25 | News, SEC filings | Active urgency, budget likely already approved internally |
-| New Controller or VP Finance hire in last 6 months | 25 | LinkedIn | New hire reviews process in first 90 days — highest-converting trigger to date |
-| Manual AP / invoice approval complaint on G2 or Glassdoor | 15 | Review sites | Named pain, not inferred pain |
-| Recent funding round (Series B+) in last 6 months | 15 | Crunchbase / press | Budget available, but weak alone — see disqualifiers |
-| Job posting for AP Specialist / AP Clerk | 10 | Job boards | Scaling AP headcount to cover volume manually — the exact problem we solve |
-| ERP migration announced (job posting for "NetSuite admin") | 10 | Job boards | Finance stack in flux, window to get in before new tooling decisions harden |
+This file used to keep its own copy of the signal list. It doesn't anymore, on purpose. `signal-library.md` is the only place signal weights live. This file's job is to sum whichever of those signals apply to a given account, then run the total through the gate, the disqualifiers, and the tiers below.
+
+That split matters more than it sounds like it should: when a signal's weight changes, or a new signal gets added, every account's score updates automatically, without this file being touched. `icp-file.md`'s version only moves when the gate, a disqualifier, or a tier threshold itself changes. If you see a score change between two weeks but this file's version number is the same, that's not a bug, that's the dependency working correctly. See `signal-library.md` for the current weights.
 
 ### Disqualifiers
 

@@ -9,7 +9,9 @@
     --slate: #3a4a63;
     --accent: #c9922f;
     --paper: #f7f5f1;
-    --good: #4caf7d;
+    --good: #2f9e5c;
+    --bad: #c0453f;
+    --tier2: #e0a030;
     --dead: #b8b2a5;
   }
   * { box-sizing: border-box; }
@@ -20,23 +22,32 @@
     color: #1c1c1c;
   }
   .app { max-width: 1150px; margin: 0 auto; padding: 28px 24px 60px; }
-  header.top { margin-bottom: 20px; }
+  header.top { margin-bottom: 18px; }
   header.top h1 { font-size: 20px; margin: 0 0 4px; letter-spacing: -0.01em; }
   header.top p { margin: 0; color: #5b5b5b; font-size: 13px; max-width: 680px; }
   .badge-synthetic { background: var(--navy); color: var(--paper); font-size: 11px; font-weight: 600; padding: 5px 10px; border-radius: 20px; white-space: nowrap; letter-spacing: 0.02em; display: inline-block; margin-top: 8px; }
 
-  .dead-vs-live { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 26px; }
-  @media (max-width: 760px) { .dead-vs-live { grid-template-columns: 1fr; } }
-  .dl-card { border-radius: 10px; padding: 16px 18px; }
-  .dl-card.dead { background: #ece9e2; border: 1px dashed var(--dead); color: #7a756a; }
-  .dl-card.live { background: #fff; border: 1.5px solid var(--accent); }
-  .dl-title { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; margin-bottom: 8px; }
-  .dl-card.dead .dl-title { color: #8f8a7d; }
-  .dl-card.live .dl-title { color: var(--accent); }
-  .dl-card.dead .dl-body { text-decoration: line-through; text-decoration-color: #b8b2a5; font-size: 13px; line-height: 1.7; }
-  .dl-card.live .dl-body { font-size: 13px; line-height: 1.7; }
+  details.static-toggle { margin-bottom: 18px; }
+  details.static-toggle summary { cursor: pointer; font-size: 12.5px; color: #8a8a8a; font-weight: 600; padding: 4px 0; }
+  details.static-toggle .dead-body { margin-top: 8px; background: #ece9e2; border: 1px dashed var(--dead); color: #7a756a; border-radius: 8px; padding: 12px 14px; font-size: 12.5px; text-decoration: line-through; text-decoration-color: #b8b2a5; line-height: 1.6; }
 
-  .timeline { display: flex; align-items: center; margin: 28px 0 8px; position: relative; }
+  .hero { background: var(--navy); border-radius: 12px; padding: 20px 22px; color: #fff; margin-bottom: 24px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .hero-account { flex: 1; min-width: 220px; }
+  .hero-account .name { font-weight: 700; font-size: 15px; margin-bottom: 2px; }
+  .hero-account .sub { font-size: 12px; color: #9fb0c6; }
+  .hero-score-wrap { display: flex; align-items: center; gap: 16px; }
+  .hero-score { font-size: 46px; font-weight: 800; line-height: 1; transition: color 0.3s; min-width: 80px; text-align: right; }
+  .hero-score.tier1 { color: #6fe0a0; }
+  .hero-score.tier2 { color: #f0c060; }
+  .hero-score.tier3 { color: #f09090; }
+  .hero-meta { font-size: 12px; }
+  .hero-tier-badge { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.02em; margin-bottom: 4px; }
+  .hero-tier-badge.tier1 { background: #1d5e3d; color: #b6f4d3; }
+  .hero-tier-badge.tier2 { background: #6e4f14; color: #ffe1a3; }
+  .hero-tier-badge.tier3 { background: #6b2823; color: #ffc4bd; }
+  .hero-consequence { font-size: 12px; color: #cdd8e6; max-width: 260px; }
+
+  .timeline { display: flex; align-items: center; margin: 24px 0 8px; position: relative; }
   .tl-line { position: absolute; top: 18px; left: 24px; right: 24px; height: 2px; background: #e3ded4; z-index: 0; }
   .tl-step { flex: 1; text-align: center; cursor: pointer; position: relative; z-index: 1; }
   .tl-dot { width: 36px; height: 36px; border-radius: 50%; background: #fff; border: 2px solid #d8d2c5; margin: 0 auto 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; color: #9a9488; }
@@ -44,20 +55,23 @@
   .tl-step.passed .tl-dot { border-color: var(--accent); color: var(--accent); }
   .tl-label { font-size: 12px; font-weight: 600; color: #6a6a6a; }
   .tl-step.active .tl-label { color: var(--navy); }
+  .tl-step.big .tl-dot { box-shadow: 0 0 0 4px rgba(201,146,47,0.22); }
 
-  .panels { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 24px; }
-  @media (max-width: 900px) { .panels { grid-template-columns: 1fr; } }
+  .panels { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; margin-top: 24px; }
+  @media (max-width: 1050px) { .panels { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .panels { grid-template-columns: 1fr; } }
+  .diff-mechanism { color: var(--slate); background: #f0f4f7; border: 1px dashed #c7d2db; border-radius: 6px; padding: 6px 8px; font-style: italic; }
   .panel { background: #fff; border: 1px solid #e3ded4; border-radius: 10px; padding: 16px; transition: box-shadow 0.2s, border-color 0.2s; }
-  .panel.touched { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(201,146,47,0.12); }
+  .panel.touched { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(201,146,47,0.14); }
   .panel h3 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: #8a8a8a; margin: 0 0 3px; }
   .panel .file-tag { font-family: "SF Mono", Consolas, monospace; font-size: 10.5px; background: var(--navy); color: var(--paper); padding: 2px 6px; border-radius: 4px; }
   .panel-body { font-size: 12.5px; line-height: 1.6; margin-top: 10px; }
-  .row { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid #f1eee7; }
-  .row:last-child { border-bottom: none; }
-  .row .k { color: #555; }
-  .row .v { font-weight: 600; text-align: right; }
+  .diff-old { color: #9a9488; text-decoration: line-through; text-decoration-color: #c8c2b5; margin-bottom: 3px; }
+  .diff-new { color: #1c1c1c; font-weight: 600; }
+  .diff-new .arrow { color: var(--accent); margin-right: 4px; }
   .new-badge { background: var(--accent); color: #fff; font-size: 9.5px; font-weight: 700; padding: 1px 6px; border-radius: 8px; margin-left: 6px; letter-spacing: 0.03em; }
-  .empty-note { color: #9a9a9a; font-style: italic; }
+  .no-change { color: #b0aba0; font-style: italic; }
+  .stable-line { padding: 3px 0; }
 
   .why-panel { margin-top: 20px; border-radius: 10px; padding: 16px 18px; background: #fdf6e8; border: 1px solid #ecd9a8; }
   .why-panel.nochange { background: #fbfaf7; border-color: #e3ded4; }
@@ -72,20 +86,16 @@
 <div class="app">
   <header class="top">
     <h1>The Repository, Live</h1>
-    <p>This is what replaces opening a raw markdown file. Same repository, same five weeks documented in <code>change-history.md</code>, but the compounding happens on screen instead of across browser tabs. Click through the timeline below.</p>
+    <p>One real account, scored with each week's actual rules. Watch what the repository would have told a rep to do with it, five weeks running.</p>
     <span class="badge-synthetic">Synthetic data — Ledgerly / Pattern 01</span>
   </header>
 
-  <div class="dead-vs-live">
-    <div class="dl-card dead">
-      <div class="dl-title">The static filter this replaces</div>
-      <div class="dl-body">200–2,000 employees. $20M–$250M revenue. SaaS, healthcare, or logistics. Uses NetSuite or Sage Intacct. Series B or later. Written once. Never touched again.</div>
-    </div>
-    <div class="dl-card live">
-      <div class="dl-title">What's live below instead</div>
-      <div class="dl-body">Same firmographic core, but every signal is weighted, every weight is set by outcome data, and the file has a version number because it's expected to change. Watch it change.</div>
-    </div>
-  </div>
+  <details class="static-toggle">
+    <summary>See the static filter this replaces →</summary>
+    <div class="dead-body">200–2,000 employees. $20M–$250M revenue. SaaS, healthcare, or logistics. Uses NetSuite or Sage Intacct. Series B or later. Written once. Never touched again. It would have told you nothing about the account below.</div>
+  </details>
+
+  <div class="hero" id="hero"></div>
 
   <div class="timeline" id="timeline"></div>
 
@@ -93,87 +103,155 @@
 
   <div class="why-panel" id="whyPanel"></div>
 
-  <footer class="note">Every number below is pulled directly from <code>repository/change-history.md</code>. Nothing here is dramatized beyond what's already documented there.</footer>
+  <footer class="note">Every score and line below is computed from the actual weights in <code>repository/icp-file.md</code> and <code>signal-library.md</code> as they existed that week, cross-referenced against <code>change-history.md</code>. Nothing is dramatized beyond what those files already say.</footer>
 </div>
 
 <script>
+// Fairmont Diagnostics: fixed facts about the account, never change.
+// icp-file.md owns the gate/disqualifiers/tiers and SUMS whatever signal-library.md currently provides.
+// It doesn't store weights itself — that's the whole point being demonstrated below.
+// Weeks 1-4: Controller hire (25) + G2 complaint (15) + job posting (10) + ERP migration (10) = 60, Tier 2.
+// Week 5: signal-library.md adds a new signal Fairmont carries (+20) — icp-file.md recalculates without being edited. 80, Tier 1.
+
+function tierFor(score) {
+  if (score >= 80) return 1;
+  if (score >= 50) return 2;
+  return 3;
+}
+function tierLabel(t) {
+  return t === 1 ? 'Tier 1 — Immediate outbound' : t === 2 ? 'Tier 2 — Nurture' : 'Tier 3 — Deprioritize';
+}
+
 const weeks = [
   {
-    n: 1, label: 'Week 1',
-    icp: { touched: false, disqualifiers: ['—'], signals: '6 signals, weights set by judgment, no outcome data yet', score: 'No scoring applied yet' },
-    positioning: { touched: false, order: ['Audit-ready', 'Close faster', 'No new headcount'], proofPoints: 0 },
-    competitor: { touched: false, entries: ['Tipalti', 'Bill.com', 'Ramp/Airbase'] },
+    n: 1, label: 'Week 1', score: 60, big: false,
+    consequence: 'Sitting in the nurture queue from day one. Signals present: Controller hire, G2 complaint, job posting, ERP migration.',
+    icp: { touched: false, lines: [{ type: 'stable', text: 'Gate passed. Sums signal-library.md for Fairmont: 25 + 15 + 10 + 10 = 60' }] },
+    signals: { touched: false, lines: [{ type: 'stable', text: 'Controller hire (25), G2 complaint (15), job posting (10), ERP migration (10) — 6 signals total, weights by judgment' }] },
+    positioning: { touched: false, lines: [{ type: 'stable', text: 'Pillars: Audit-ready, Close faster, No new headcount — no priority set, no proof points yet' }] },
+    competitor: { touched: false, lines: [{ type: 'stable', text: 'Tipalti, Bill.com, Ramp/Airbase' }] },
     why: null
   },
   {
-    n: 2, label: 'Week 2',
-    icp: { touched: false, disqualifiers: ['—'], signals: '6 signals, unchanged', score: 'No change yet — insufficient signal-level data' },
-    positioning: { touched: true, order: ['Audit-ready ★', 'Close faster', 'No new headcount'], proofPoints: 1 },
-    competitor: { touched: false, entries: ['Tipalti', 'Bill.com', 'Ramp/Airbase'] },
-    why: '40 sequences sent on two hooks. "Close faster" reply rate: 6%. "Audit-ready" reply rate: 14%. Audit-ready promoted to primary pillar in positioning-file.md — more than 2x the reply rate on identical send volume.'
+    n: 2, label: 'Week 2', score: 60, big: false,
+    consequence: 'Fairmont\'s score doesn\'t move this week — nothing that feeds its score changed.',
+    icp: { touched: false, lines: [{ type: 'nochange', text: 'No change this week' }] },
+    signals: { touched: false, lines: [{ type: 'nochange', text: 'No change this week' }] },
+    positioning: { touched: true, lines: [
+      { type: 'old', text: 'Pillars: no priority set' },
+      { type: 'new', text: 'Audit-ready promoted to primary pillar', badge: true }
+    ] },
+    competitor: { touched: false, lines: [{ type: 'nochange', text: 'No change this week' }] },
+    why: '40 sequences sent on two hooks. "Close faster" reply rate: 6%. "Audit-ready" reply rate: 14%. Audit-ready promoted to primary in positioning-file.md, more than 2x the reply rate on identical send volume. Doesn\'t change Fairmont\'s score, changes what any sequence sent to Fairmont would lead with.'
   },
   {
-    n: 3, label: 'Week 3',
-    icp: { touched: false, disqualifiers: ['—'], signals: '6 signals, unchanged', score: 'No change yet' },
-    positioning: { touched: true, order: ['Audit-ready ★', 'Close faster', 'No new headcount'], proofPoints: 2, newProof: true },
-    competitor: { touched: true, entries: ['Tipalti', 'Bill.com', 'Ramp/Airbase', 'BPO / outsourced AP'], newEntry: 'BPO / outsourced AP' },
-    why: '5 meetings held from Tier 1 accounts. 4 of 5 raised the same objection unprompted: "we already have a BPO handling overflow AP." BPO added to competitor-radar.md as a fourth alternative, objection handling added to persona-file.md, and a proof point added to positioning-file.md directly rebutting it.'
+    n: 3, label: 'Week 3', score: 60, big: false,
+    consequence: 'Still Tier 2. This week sharpens the message Fairmont would get, not the score.',
+    icp: { touched: false, lines: [{ type: 'nochange', text: 'No change this week' }] },
+    signals: { touched: false, lines: [{ type: 'nochange', text: 'No change this week' }] },
+    positioning: { touched: true, lines: [
+      { type: 'old', text: 'No proof point for the outsourcing objection' },
+      { type: 'new', text: 'Proof point added: cost scaling + audit trail vs. BPO', badge: true }
+    ] },
+    competitor: { touched: true, lines: [
+      { type: 'old', text: 'Tipalti, Bill.com, Ramp/Airbase' },
+      { type: 'new', text: '+ BPO / outsourced AP', badge: true }
+    ] },
+    why: '5 meetings held from Tier 1 accounts. 4 of 5 raised the same objection unprompted: "we already have a BPO handling overflow AP." Added to competitor-radar.md as a fourth alternative. Fairmont wasn\'t in this batch of meetings, its score doesn\'t move, but the next sequence it receives will preempt this objection anyway.'
   },
   {
-    n: 4, label: 'Week 4',
-    icp: { touched: true, disqualifiers: ['No budget/funding signal this quarter'], newDisq: true, signals: 'Funding round weight reduced (correlated with fit, not timing)', score: 'Disqualifier added: high fit no longer qualifies without a current-quarter signal' },
-    positioning: { touched: false, order: ['Audit-ready ★', 'Close faster', 'No new headcount'], proofPoints: 2 },
-    competitor: { touched: false, entries: ['Tipalti', 'Bill.com', 'Ramp/Airbase', 'BPO / outsourced AP'] },
-    why: '1 closed-won, 2 closed-lost. Both losses had high firmographic fit but the same stated reason: no urgent budget trigger this quarter. New disqualifier added to icp-file.md, and the funding-round signal weight was reduced since it predicted fit but not timing, and timing is what the losses were actually about.'
+    n: 4, label: 'Week 4', score: 60, big: false,
+    consequence: 'Still Tier 2 — correctly. This guardrail and this reweight were both built for other accounts, not this one.',
+    icp: { touched: true, lines: [
+      { type: 'old', text: 'No timing disqualifier existed' },
+      { type: 'new', text: 'Disqualifier added: no budget/funding signal this quarter', badge: true },
+      { type: 'mechanism', text: 'Fairmont has no funding-round signal either way — unaffected by this gate change.' }
+    ] },
+    signals: { touched: true, lines: [
+      { type: 'old', text: 'Funding round: Stable, weight 15' },
+      { type: 'new', text: 'Funding round: Downweighted', badge: true },
+      { type: 'mechanism', text: 'Fairmont never carried this signal — unaffected either way.' }
+    ] },
+    positioning: { touched: false, lines: [{ type: 'nochange', text: 'No change this week' }] },
+    competitor: { touched: false, lines: [{ type: 'nochange', text: 'No change this week' }] },
+    why: '1 closed-won, 2 closed-lost. Both losses had high firmographic fit but the same reason: no urgent budget trigger this quarter. Disqualifier added to icp-file.md, since that\'s the gate. Funding round downweighted in signal-library.md, since that\'s a weight. Two different files, because two different kinds of fact changed.'
   },
   {
-    n: 5, label: 'Week 5',
-    icp: { touched: true, disqualifiers: ['No budget/funding signal this quarter'], signals: 'New signal added: Controller LinkedIn post about close pain, weight 20', newSignal: true, score: 'Fit scoring table updated to include the new signal' },
-    positioning: { touched: false, order: ['Audit-ready ★', 'Close faster', 'No new headcount'], proofPoints: 2 },
-    competitor: { touched: false, entries: ['Tipalti', 'Bill.com', 'Ramp/Airbase', 'BPO / outsourced AP'] },
-    why: 'Reviewing the one closed-won account: the Controller had posted about month-end close pain on LinkedIn nine days before the sequence went out. Not a tracked signal until now. Added to signal-library.md as a hypothesis from a single data point — the next ten sequences targeting it are the actual test.'
+    n: 5, label: 'Week 5', score: 80, big: true,
+    consequence: 'Crosses into Tier 1. This is the account that actually closed.',
+    icp: { touched: false, lines: [
+      { type: 'mechanism', text: 'No content change here. This file sums signal-library.md, it doesn\'t store weights — so Fairmont rescores automatically the moment the row on the right gets added.' },
+      { type: 'new', text: 'Fairmont: 60 → 80. Tier 2 → Tier 1.', badge: true }
+    ] },
+    signals: { touched: true, lines: [
+      { type: 'old', text: 'Controller LinkedIn activity: not a tracked signal' },
+      { type: 'new', text: '+ Controller posts about close pain on LinkedIn (weight 20)', badge: true }
+    ] },
+    positioning: { touched: false, lines: [{ type: 'nochange', text: 'No change this week' }] },
+    competitor: { touched: false, lines: [{ type: 'nochange', text: 'No change this week' }] },
+    why: 'Reviewing the account that closed: the Controller had posted about month-end close pain on LinkedIn nine days before the sequence went out. Not a tracked signal until this week. Added to signal-library.md at weight 20 — the single addition that moved Fairmont out of the nurture queue it had sat in for a month, and into immediate outbound, without anyone touching icp-file.md at all. It closed shortly after.'
   }
 ];
 
 let current = 0;
 
+function renderHero() {
+  const w = weeks[current];
+  const tier = tierFor(w.score);
+  document.getElementById('hero').innerHTML = `
+    <div class="hero-account">
+      <div class="name">Fairmont Diagnostics</div>
+      <div class="sub">480 employees · healthcare services · NetSuite ERP · Controller hired 5 months ago</div>
+    </div>
+    <div class="hero-score-wrap">
+      <div>
+        <div class="hero-tier-badge tier${tier}">${tierLabel(tier)}</div>
+        <div class="hero-consequence">${w.consequence}</div>
+      </div>
+      <div class="hero-score tier${tier}">${w.score}</div>
+    </div>
+  `;
+}
+
 function renderTimeline() {
   const tl = document.getElementById('timeline');
   tl.innerHTML = '<div class="tl-line"></div>' + weeks.map((w, i) => `
-    <div class="tl-step ${i === current ? 'active' : ''} ${i < current ? 'passed' : ''}" onclick="goTo(${i})">
+    <div class="tl-step ${i === current ? 'active' : ''} ${i < current ? 'passed' : ''} ${w.big ? 'big' : ''}" onclick="goTo(${i})">
       <div class="tl-dot">${w.n}</div>
       <div class="tl-label">${w.label}</div>
     </div>
   `).join('');
 }
 
+function renderFileLines(lines) {
+  return lines.map(l => {
+    if (l.type === 'old') return `<div class="diff-old">${l.text}</div>`;
+    if (l.type === 'new') return `<div class="diff-new"><span class="arrow">→</span>${l.text}${l.badge ? '<span class="new-badge">CHANGED</span>' : ''}</div>`;
+    if (l.type === 'nochange') return `<div class="no-change">${l.text}</div>`;
+    if (l.type === 'mechanism') return `<div class="diff-mechanism">${l.text}</div>`;
+    return `<div class="stable-line">${l.text}</div>`;
+  }).join('');
+}
+
 function renderPanels() {
   const w = weeks[current];
   const panels = document.getElementById('panels');
-
-  const icpRows = [
-    `<div class="row"><span class="k">Disqualifiers</span><span class="v">${w.icp.disqualifiers.join(', ')}${w.icp.newDisq ? '<span class="new-badge">NEW</span>' : ''}</span></div>`,
-    `<div class="row"><span class="k">Signals</span><span class="v">${w.icp.signals}${w.icp.newSignal ? '<span class="new-badge">NEW</span>' : ''}</span></div>`,
-    `<div class="row"><span class="k">Scoring</span><span class="v">${w.icp.score}</span></div>`
-  ].join('');
-
-  const posRows = w.positioning.order.map(p => `<div class="row"><span class="k">${p}</span></div>`).join('')
-    + `<div class="row"><span class="k">Proof points</span><span class="v">${w.positioning.proofPoints}${w.positioning.newProof ? '<span class="new-badge">NEW</span>' : ''}</span></div>`;
-
-  const compRows = w.competitor.entries.map(e => `<div class="row"><span class="k">${e}${e === w.competitor.newEntry ? '<span class="new-badge">NEW</span>' : ''}</span></div>`).join('');
-
   panels.innerHTML = `
     <div class="panel ${w.icp.touched ? 'touched' : ''}">
       <h3><span class="file-tag">icp-file.md</span></h3>
-      <div class="panel-body">${icpRows}</div>
+      <div class="panel-body">${renderFileLines(w.icp.lines)}</div>
+    </div>
+    <div class="panel ${w.signals.touched ? 'touched' : ''}">
+      <h3><span class="file-tag">signal-library.md</span></h3>
+      <div class="panel-body">${renderFileLines(w.signals.lines)}</div>
     </div>
     <div class="panel ${w.positioning.touched ? 'touched' : ''}">
       <h3><span class="file-tag">positioning-file.md</span></h3>
-      <div class="panel-body">${posRows}</div>
+      <div class="panel-body">${renderFileLines(w.positioning.lines)}</div>
     </div>
     <div class="panel ${w.competitor.touched ? 'touched' : ''}">
       <h3><span class="file-tag">competitor-radar.md</span></h3>
-      <div class="panel-body">${compRows}</div>
+      <div class="panel-body">${renderFileLines(w.competitor.lines)}</div>
     </div>
   `;
 }
@@ -192,6 +270,7 @@ function renderWhy() {
 
 function goTo(i) {
   current = i;
+  renderHero();
   renderTimeline();
   renderPanels();
   renderWhy();

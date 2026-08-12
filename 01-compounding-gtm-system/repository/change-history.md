@@ -24,7 +24,7 @@ Signal-to-sequence sent 40 sequences across two hooks pulled from `positioning-f
 
 **Changes made:**
 - `positioning-file.md` → v2: audit-ready promoted to primary pillar, close-faster demoted to secondary. Reason logged: audit-ready outperformed by more than 2x on identical send volume.
-- `icp-file.md` → v2: no change yet, insufficient signal-level data.
+- `icp-file.md` and `signal-library.md`: no change. Insufficient signal-level data yet — this week's result was about which pillar to lead with, not who to target.
 
 ---
 
@@ -44,8 +44,8 @@ Signal-to-sequence sent 40 sequences across two hooks pulled from `positioning-f
 1 closed-won, 2 closed-lost. Both losses had strong firmographic fit (Tier 1 on the old scoring) but the same stated reason: "no urgent budget trigger this quarter."
 
 **Changes made:**
-- `icp-file.md` → v3: new disqualifier added — no budget/funding signal in current fiscal quarter, even at high firmographic fit. This single factor explained both losses independently of anything else in the file.
-- `icp-file.md` → v4: "recent funding round" signal weight reduced from 15 to lower priority after review, since it correlated with fit but not with timing, and timing is what the losses were actually about.
+- `icp-file.md` → v3: new disqualifier added — no budget/funding signal in current fiscal quarter, even at high firmographic fit. This single factor explained both losses independently of anything else in the file. This is icp-file.md's own content changing: the gate got stricter.
+- `signal-library.md` → v2: "recent funding round" signal downweighted after review, since it correlated with fit but not with timing, and timing is what the losses were actually about. This is a weight change, so it lives here, not in icp-file.md.
 
 ---
 
@@ -54,8 +54,8 @@ Signal-to-sequence sent 40 sequences across two hooks pulled from `positioning-f
 Reviewing the one closed-won account for anything not yet captured: the Controller had posted about month-end close pain on LinkedIn nine days before the sequence went out. Not currently a tracked signal.
 
 **Changes made:**
-- `signal-library.md` → v4: new signal added, "Controller posts about month-end close pain on LinkedIn," weight 20. Flagged explicitly as a hypothesis from a single data point, not a proven weight — the next ten sequences targeting this signal are the actual test.
-- `icp-file.md` → v5: fit scoring table updated to include the new signal.
+- `signal-library.md` → v3: new signal added, "Controller posts about month-end close pain on LinkedIn," weight 20. Flagged explicitly as a hypothesis from a single data point, not a proven weight — the next ten sequences targeting this signal are the actual test.
+- `icp-file.md`: no content change. It doesn't store weights, it sums whatever `signal-library.md` currently provides for a given account. Every account that carries this new signal gets rescored automatically the moment the row above was added, without this file being touched. That's the dependency working as designed, not a step that got skipped.
 
 ---
 
