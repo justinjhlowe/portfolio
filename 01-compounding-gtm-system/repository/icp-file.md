@@ -1,6 +1,6 @@
 # ICP File — Ledgerly
 
-**Version:** 3 | **Last updated:** week 4 | **Owner:** GTM repository | **Change log:** see `change-history.md`
+**Version:** 2 | **Last updated:** week 4 | **Owner:** GTM repository | **Change log:** see `change-history.md`
 
 This file's own version hasn't moved since week 4, even though the scores it produces keep changing. That's not staleness, it's the design: this file owns the gate, the disqualifiers, and the tiers. It doesn't own the signal weights. See "How scoring actually works" below.
 

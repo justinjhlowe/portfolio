@@ -44,7 +44,7 @@ Signal-to-sequence sent 40 sequences across two hooks pulled from `positioning-f
 1 closed-won, 2 closed-lost. Both losses had strong firmographic fit (Tier 1 on the old scoring) but the same stated reason: "no urgent budget trigger this quarter."
 
 **Changes made:**
-- `icp-file.md` → v3: new disqualifier added — no budget/funding signal in current fiscal quarter, even at high firmographic fit. This single factor explained both losses independently of anything else in the file. This is icp-file.md's own content changing: the gate got stricter.
+- `icp-file.md` → v2: new disqualifier added — no budget/funding signal in current fiscal quarter, even at high firmographic fit. This single factor explained both losses independently of anything else in the file. This is icp-file.md's own content changing: the gate got stricter. Its first change since week 1, because nothing had forced the gate itself to move until now.
 - `signal-library.md` → v2: "recent funding round" signal downweighted after review, since it correlated with fit but not with timing, and timing is what the losses were actually about. This is a weight change, so it lives here, not in icp-file.md.
 
 ---

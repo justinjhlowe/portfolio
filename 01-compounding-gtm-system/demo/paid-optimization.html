@@ -117,7 +117,7 @@ const scenarios = {
   abm: {
     week2: {
       trace: [
-        { file: 'icp-file.md · v2', detail: 'Audience built from firmographic + funding-stage filter only. No budget-timing disqualifier exists yet — this was added week 4.' },
+        { file: 'icp-file.md · v1', detail: 'Audience built from firmographic + funding-stage filter only. No budget-timing disqualifier exists yet — this was added week 4.' },
         { file: 'signal-library.md · v1', detail: 'Funding round weight: 15, no timing check. Accounts with old funding rounds score the same as accounts with a live signal this quarter.' }
       ],
       audienceSize: '340 accounts',
@@ -131,8 +131,8 @@ const scenarios = {
     },
     week5: {
       trace: [
-        { file: 'icp-file.md · v5', detail: 'Budget-timing disqualifier applied (added week 4): excludes accounts without a current-quarter budget or funding signal, even at high firmographic fit.' },
-        { file: 'signal-library.md · v4', detail: 'Funding round weight reduced — it correlated with fit but not with timing, and timing is what the week 4 losses were actually about.' }
+        { file: 'icp-file.md · v2', detail: 'Budget-timing disqualifier applied (added week 4): excludes accounts without a current-quarter budget or funding signal, even at high firmographic fit.' },
+        { file: 'signal-library.md · v2', detail: 'Funding round weight downweighted — it correlated with fit but not with timing, and timing is what the week 4 losses were actually about.' }
       ],
       audienceSize: '210 accounts',
       avgFit: '89',

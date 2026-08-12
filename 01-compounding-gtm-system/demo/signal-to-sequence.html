@@ -153,9 +153,10 @@
 const scenarios = {
   controller_hire: {
     week2: {
-      score: 78, tier: 1,
+      score: 85, tier: 1,
       trace: [
-        { file: 'icp-file.md · v2', detail: 'Fit score 78 (Tier 1). Signal matched: new Controller/VP Finance hire, weight 25.' },
+        { file: 'signal-library.md · v1', detail: 'New Controller/VP Finance hire, weight 25 — the weight this score is built from.' },
+        { file: 'icp-file.md · v1', detail: 'Fit score 85 (Tier 1) — gate passed, sums matched signals from signal-library.md. icp-file.md doesn\'t store the weight itself, just the formula.' },
         { file: 'persona-file.md · v1', detail: 'Controller pain #1 pulled: "we close three days late every month because approvals sit in email."' },
         { file: 'positioning-file.md · v2', detail: 'Primary pillar: Audit-ready by default. Proof point: audit prep time, two weeks to two days.' },
         { file: 'competitor-radar.md · v1', detail: 'No BPO objection tracked yet — this file did not exist until week 3.' }
@@ -170,9 +171,10 @@ Worth 15 minutes to see if it's relevant to how Meridian runs close?`,
       touch3: 'Offer a peer reference call with another Controller.'
     },
     week5: {
-      score: 91, tier: 1,
+      score: 85, tier: 1,
       trace: [
-        { file: 'icp-file.md · v5', detail: 'Fit score 91 (Tier 1). Signal matched: new Controller/VP Finance hire, weight 25.' },
+        { file: 'signal-library.md · v3', detail: 'New Controller/VP Finance hire, weight 25 — unchanged since week 1. This signal was never touched.' },
+        { file: 'icp-file.md · v2', detail: 'Fit score still 85 (Tier 1) — the score doesn\'t move, because nothing that feeds it changed. What\'s different below is the message, not the priority.' },
         { file: 'persona-file.md · v2', detail: 'Controller pain #1 pulled, plus BPO objection now pre-loaded from persona-file.md v2 (added week 3).' },
         { file: 'positioning-file.md · v3', detail: 'Primary pillar: Audit-ready by default. Proof points: audit prep two weeks to two days, plus zero duplicate payments in two quarters.' },
         { file: 'competitor-radar.md · v2', detail: 'BPO/outsourced AP flagged as the most likely objection at this account stage — pre-emptive line inserted before it can be raised.' }
@@ -191,7 +193,8 @@ Worth 15 minutes to see if it's relevant to Meridian?`,
     week2: {
       score: 88, tier: 1,
       trace: [
-        { file: 'icp-file.md · v2', detail: 'Fit score 88 (Tier 1). Signal matched: audit finding in press, weight 25.' },
+        { file: 'signal-library.md · v1', detail: 'Audit finding in press, weight 25 — the weight this score is built from.' },
+        { file: 'icp-file.md · v1', detail: 'Fit score 88 (Tier 1) — gate passed, sums matched signals from signal-library.md.' },
         { file: 'positioning-file.md · v2', detail: 'Primary pillar: Audit-ready by default. Proof point: audit prep time, two weeks to two days.' },
         { file: 'competitor-radar.md · v1', detail: 'No competitor angle needed — trigger is finding-specific, not comparison-specific.' }
       ],
@@ -207,7 +210,8 @@ Worth a quick look before next year's audit cycle?`,
     week5: {
       score: 88, tier: 1,
       trace: [
-        { file: 'icp-file.md · v5', detail: 'Fit score 88 (Tier 1). Signal weight unchanged since week 1 — this signal has held steady through every revision.' },
+        { file: 'signal-library.md · v3', detail: 'Audit finding in press, weight 25 — held steady through every revision, never touched.' },
+        { file: 'icp-file.md · v2', detail: 'Fit score still 88 (Tier 1) — gate and disqualifiers current as of week 4, but neither applies to this trigger.' },
         { file: 'positioning-file.md · v3', detail: 'Primary pillar: Audit-ready by default. Proof points: two weeks to two days, plus zero duplicate payments added v3.' },
         { file: 'competitor-radar.md · v2', detail: 'No competitor angle needed for this trigger — confirms the repository only adds an objection line when the trigger actually calls for it.' }
       ],
@@ -226,7 +230,7 @@ Worth a quick look before next year's audit cycle?`,
       score: 55, tier: 2, notFound: true,
       trace: [
         { file: 'signal-library.md · v1', detail: '"Controller posts about close pain on LinkedIn" is not a tracked signal in this version — it wasn\'t added until week 5.' },
-        { file: 'icp-file.md · v2', detail: 'No signal match. Score falls back to firmographic baseline only: 55 (Tier 2).' }
+        { file: 'icp-file.md · v1', detail: 'No signal match. Score falls back to firmographic baseline only: 55 (Tier 2).' }
       ],
       subject: 'Quick intro — Ledgerly',
       body: `Hi Sarah,
@@ -240,8 +244,8 @@ Happy to send more information if useful.`,
     week5: {
       score: 96, tier: 1,
       trace: [
-        { file: 'signal-library.md · v4', detail: 'Signal matched: Controller LinkedIn post about close pain, weight 20 — added week 5 directly from the pattern in the one closed-won deal.' },
-        { file: 'icp-file.md · v5', detail: 'Fit score 96 (Tier 1) — new signal stacked on top of existing firmographic and role fit.' },
+        { file: 'signal-library.md · v3', detail: 'Signal matched: Controller LinkedIn post about close pain, weight 20 — added week 5 directly from the pattern in the one closed-won deal.' },
+        { file: 'icp-file.md · v2', detail: 'Fit score 96 (Tier 1) — no edit to this file was needed. It sums whatever signal-library.md provides, so the new row above rescored this account automatically.' },
         { file: 'positioning-file.md · v3', detail: 'Primary pillar: Audit-ready by default. Proof point: two weeks to two days, plus close acceleration of 2.8 days.' }
       ],
       subject: 'Saw your post about close',
@@ -287,7 +291,7 @@ function runWorkflow() {
     <div class="score-num">${s.score}</div>
     <div>
       <span class="score-tier ${s.tier === 2 ? 'tier2' : ''}">Tier ${s.tier}</span>
-      <div class="score-label">Fit score, from icp-file.md</div>
+      <div class="score-label">Fit score — icp-file.md sums signal-library.md</div>
     </div>
   </div>`;
 
