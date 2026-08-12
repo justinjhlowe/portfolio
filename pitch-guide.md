@@ -21,9 +21,9 @@ Don't open with the demo. Open with the diagnosis, in their language if you can 
 
 This is what makes everything after this feel like the answer to a problem they already named, not a pitch for a tool they didn't ask for. Thirty seconds, no slides.
 
-## Phase 2 — Show the repository as real files
+## Phase 2 — Show the repository, live
 
-Open `repository/icp-file.md` and point at the static filter sitting next to the living, scored version. Not a tour of all six files, just this one contrast. The point is making the architecture claim visible instead of asserted: this is what replaces a spreadsheet nobody updates.
+Open `demo/repository-live.html`, not the raw markdown file. Reading a code view of `icp-file.md` on GitHub doesn't land visually, it's just text on a page. The static-filter-versus-living-version contrast sits at the top of this artifact already, and the timeline below it is Phases 2 and 5 fused into one screen: click Week 1 through Week 5 and watch `icp-file.md`, `positioning-file.md`, and `competitor-radar.md` update in place, each with the actual reason from `change-history.md` right next to it. No tab-switching, no navigating to GitHub mid-pitch and back. This is the single artifact that replaces both the file tour and the change-history callout below.
 
 ## Phase 3 — Run the demo on Week 2 first, on purpose
 
@@ -33,13 +33,13 @@ Pick the trigger or topic with the sharpest before/after for that spoke (the lin
 
 Let the sharper, grounded output sit on screen for a second before saying anything. Point at the retrieval trace so they see which specific file changed and why. This is the moment the meeting is built around. Don't talk over it.
 
-## Phase 5 — Open `change-history.md` and preempt the objection
+## Phase 5 — Point at the "why this changed" panel and preempt the objection
 
-Show the actual dated entry that caused the difference: a real reply rate, an objection heard on a real call, a real loss reason. Say directly:
+You've already shown this inside `repository-live.html` in Phase 2, the reason panel under the timeline. Point back at it here rather than opening a new file: a real reply rate, an objection heard on a real call, a real loss reason. Say directly:
 
 *"The data's synthetic because I can't show you a client's actual system. The mechanism generating it is the same one running live."*
 
-A sharp prospect will ask if you scripted a good-looking demo. This answers it before they do.
+A sharp prospect will ask if you scripted a good-looking demo. This answers it before they do, and because it's the same screen from Phase 2, there's no navigation break for the objection to slip into.
 
 ## Phase 6 — Optional: show the same pivot in a second spoke
 
@@ -54,6 +54,10 @@ Ask what their ICP file, their signal library, their positioning file would actu
 ## When they ask about the tools underneath
 
 Prospects will ask which specific tools power each spoke, Clay, transcription, ad platforms, a CRM. `tools-and-stack.md` in this same folder is the running answer key. The shape of every answer is the same: separate the input tool, which is replaceable, from the repository, which isn't. Add to that file after the call if a new tool question comes up that isn't covered yet.
+
+## Where GitHub fits, and where it doesn't
+
+GitHub is the answer when someone asks where this actually lives, and it's where a technical colleague goes to dig into raw files or commit history on their own time. It is not what you open during the live call. Live, everything runs through the HTML files in `demo/`, they're built for a single, uninterrupted screen. Save the repo link for the follow-up email, not the meeting.
 
 ## What not to do
 

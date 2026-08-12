@@ -26,7 +26,7 @@ A repository the AI can reason against, running on a loop where every cycle make
 - [x] SEO/AEO spoke (interactive demo — `demo/seo-aeo-content.html`)
 - [x] Paid spoke (interactive demo — `demo/paid-optimization.html`)
 - [x] Newsletter spoke (interactive demo — `demo/newsletter-segmentation.html`)
-- [ ] Before/after loop walkthrough (the proof moment — currently lives inside each spoke's own week 2 / week 5 toggle; still worth a single combined walkthrough that runs all three back to back)
+- [x] Repository timeline (interactive demo — `demo/repository-live.html`) — replaces browsing raw markdown on GitHub during a live pitch. Fuses the static-filter-vs-living-file contrast with a five-week scrubber that updates `icp-file.md`, `positioning-file.md`, and `competitor-radar.md` in place, with the `change-history.md` reasoning surfaced inline instead of requiring a tab switch.
 - [ ] `results.md` — pull anonymized outcomes from where this pattern has actually run for clients
 
 ### On the signal-to-sequence demo
