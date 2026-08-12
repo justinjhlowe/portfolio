@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Portfolio — Justin Lowe</title>
+<style>
+  :root { --navy: #0f1b2d; --paper: #f7f5f1; --accent: #c9922f; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background: var(--paper); color: #1c1c1c; }
+  .app { max-width: 820px; margin: 0 auto; padding: 48px 24px 60px; }
+  h1 { font-size: 24px; margin: 0 0 6px; letter-spacing: -0.01em; }
+  .sub { color: #5b5b5b; font-size: 14px; max-width: 560px; line-height: 1.6; margin-bottom: 32px; }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: #8a8a8a; margin: 32px 0 12px; }
+  .card { display: block; background: #fff; border: 1px solid #e3ded4; border-radius: 10px; padding: 16px 18px; margin-bottom: 10px; text-decoration: none; color: inherit; transition: border-color 0.15s; }
+  .card:hover { border-color: var(--accent); }
+  .card .name { font-weight: 700; font-size: 14.5px; margin-bottom: 3px; }
+  .card .desc { font-size: 12.5px; color: #6a6a6a; line-height: 1.5; }
+  .card .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.03em; color: var(--accent); text-transform: uppercase; margin-top: 6px; }
+  footer { margin-top: 40px; font-size: 11.5px; color: #9a9a9a; }
+  footer a { color: #6a6a6a; }
+</style>
+</head>
+<body>
+<div class="app">
+  <h1>Portfolio</h1>
+  <div class="sub">Working proof, not case studies. Every demo below runs on synthetic data and pulls from a real, versioned repository — the how, not just the why.</div>
+
+  <h2>Pattern 01 — The Compounding GTM System</h2>
+
+  <a class="card" href="01-compounding-gtm-system/demo/repository-live.html">
+    <div class="name">The Repository, Live</div>
+    <div class="desc">One real account, scored with each week's actual rules. Watch the fit score move as the repository compounds, five weeks running.</div>
+    <div class="tag">Start here</div>
+  </a>
+
+  <a class="card" href="01-compounding-gtm-system/demo/signal-to-sequence.html">
+    <div class="name">Signal-to-Sequence</div>
+    <div class="desc">Outbound velocity without added headcount. A trigger fires, the workflow scores fit and writes a sequence grounded in the repository.</div>
+  </a>
+
+  <a class="card" href="01-compounding-gtm-system/demo/seo-aeo-content.html">
+    <div class="name">SEO/AEO Content Brief</div>
+    <div class="desc">Inbound growth without a paid research budget. Same repository grounds the angle, the title, and the AI-citable answer block.</div>
+  </a>
+
+  <a class="card" href="01-compounding-gtm-system/demo/paid-optimization.html">
+    <div class="name">Paid Optimization</div>
+    <div class="desc">Spend efficiency, not vanity metrics. Audience and budget shaped by the same fit scoring, wasted spend quantified directly.</div>
+  </a>
+
+  <a class="card" href="01-compounding-gtm-system/demo/newsletter-segmentation.html">
+    <div class="name">Newsletter Segmentation</div>
+    <div class="desc">One send, three lead stories, because the repository knows three different things about three different segments.</div>
+  </a>
+
+  <h2>Reference</h2>
+
+  <a class="card" href="https://github.com/justinjhlowe/portfolio/tree/main/01-compounding-gtm-system/repository">
+    <div class="name">Repository files</div>
+    <div class="desc">The six markdown files every demo above reads from: ICP, persona, positioning, signal library, competitor radar, change history. Opens on GitHub, where markdown renders properly.</div>
+  </a>
+
+  <a class="card" href="https://github.com/justinjhlowe/portfolio/blob/main/pitch-guide.md">
+    <div class="name">Pitch guide</div>
+    <div class="desc">How to walk a prospect through this, phase by phase. Opens on GitHub.</div>
+  </a>
+
+  <footer>Synthetic data throughout. Built to demonstrate the architecture, not to represent any real client's actual system.</footer>
+</div>
+</body>
+</html>
